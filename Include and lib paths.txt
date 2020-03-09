@@ -1,0 +1,12 @@
+.\3rdParty\SDL2\include
+.\3rdParty\SDL2_image\include
+.\3rdParty\SDL2_ttf\include
+
+
+.\3rdParty\SDL2\lib\x64
+.\3rdParty\SDL2_image\lib\x64
+.\3rdParty\SDL2_ttf\lib\x64
+
+.\3rdParty\SDL2\lib\x86
+.\3rdParty\SDL2_image\lib\x86
+.\3rdParty\SDL2_ttf\lib\x86
