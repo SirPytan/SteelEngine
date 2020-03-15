@@ -9,8 +9,9 @@ using namespace dae;
 class FPSComponent;
 class TextRenderComponent;
 
-class FPSScript : public dae::BaseComponent
+class FPSScript : public BaseComponent
 {
+public:
 	FPSScript();
 
 	FPSScript(const FPSScript& other) = delete;

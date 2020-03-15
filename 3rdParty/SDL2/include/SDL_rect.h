@@ -33,6 +33,9 @@
 #include "SDL_pixels.h"
 #include "SDL_rwops.h"
 
+
+#pragma warning (disable:26812)
+
 #include "begin_code.h"
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus

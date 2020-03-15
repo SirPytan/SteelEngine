@@ -35,8 +35,11 @@ void dae::GameObject::Render() const
 		pComp->Render();
 	}
 
-	const auto pos = m_Transform.GetPosition();
-	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	if (m_Texture)
+	{
+		const auto pos = m_Transform.GetPosition();
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	}
 
 }
 

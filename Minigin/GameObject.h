@@ -7,10 +7,10 @@
 #include <glm/vec3.hpp>
 #pragma warning(pop)
 
-class BaseComponent;
 
 namespace dae
 {
+	class BaseComponent;
 	class Texture2D;
 	class GameObject final : public SceneObject
 	{
