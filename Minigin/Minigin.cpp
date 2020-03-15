@@ -10,6 +10,9 @@
 #include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "FPSComponent.h"
+#include "TextRenderComponent.h"
+#include "FPSScript.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -57,6 +60,17 @@ void dae::Minigin::LoadGame() const
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(80, 20);
 	scene.Add(to);
+
+	go = std::make_shared<GameObject>();
+	FPSComponent* pFPSComponent = new FPSComponent();
+	TextRenderComponent* pTextRender = new TextRenderComponent(font);
+	FPSScript* pFPSScript = new FPSScript();
+	go->AddComponent(pFPSComponent);
+	go->AddComponent(pTextRender);
+	go->AddComponent(pFPSScript);
+	go->SetPosition(50, 20);
+	scene.Add(go);
+
 }
 
 void dae::Minigin::Cleanup()
@@ -75,23 +89,33 @@ void dae::Minigin::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
-
 	{
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
 
+		auto lastTime = std::chrono::high_resolution_clock::now();
+		float lag = 0.0f;
+		float secondsPerUpdate = 0.02f;
 		bool doContinue = true;
 		while (doContinue)
 		{
 			const auto currentTime = high_resolution_clock::now();
-			
+			float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+			lastTime = currentTime;
+			lag += deltaTime;
+
 			doContinue = input.ProcessInput();
-			sceneManager.Update();
+
+			//Normal Update?
+
+			while (lag >= secondsPerUpdate)
+			{
+				//FixedUpdate?
+				sceneManager.Update(deltaTime);
+				lag -= secondsPerUpdate;			 
+			}
 			renderer.Render();
-			
-			auto sleepTime = duration_cast<duration<float>>(currentTime + milliseconds(MsPerFrame) - high_resolution_clock::now());
-			this_thread::sleep_for(sleepTime);
 		}
 	}
 
