@@ -61,14 +61,16 @@ void dae::Minigin::LoadGame() const
 	to->SetPosition(80, 20);
 	scene.Add(to);
 
+	font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 15);
 	go = std::make_shared<GameObject>();
 	FPSComponent* pFPSComponent = new FPSComponent();
 	TextRenderComponent* pTextRender = new TextRenderComponent(font);
 	FPSScript* pFPSScript = new FPSScript();
+	pTextRender->SetColor({ 255,255,0 });
 	go->AddComponent(pFPSComponent);
 	go->AddComponent(pTextRender);
 	go->AddComponent(pFPSScript);
-	go->SetPosition(50, 20);
+	go->SetPosition(10, 10);
 	scene.Add(go);
 
 }
@@ -98,6 +100,8 @@ void dae::Minigin::Run()
 		float lag = 0.0f;
 		float secondsPerUpdate = 0.02f;
 		bool doContinue = true;
+
+		sceneManager.Initialize();
 		while (doContinue)
 		{
 			const auto currentTime = high_resolution_clock::now();

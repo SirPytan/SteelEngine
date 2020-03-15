@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "FPSScript.h"
+#include <sstream>
 
 FPSScript::FPSScript()
 {}
@@ -18,7 +19,9 @@ void FPSScript::Update(float deltaTime)
 		if (m_ElapsedTime >= m_FPSRefreshInterval)
 		{
 			m_ElapsedTime = 0;
-			m_pTextRenderComponent->SetText(std::to_string(m_pFPSComponent->GetFPS()));
+			std::stringstream ss;
+			ss << "FPS: " << m_pFPSComponent->GetFPS();
+			m_pTextRenderComponent->SetText(ss.str());
 		}
 	}
 	else

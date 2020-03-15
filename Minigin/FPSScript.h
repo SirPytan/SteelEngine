@@ -28,7 +28,7 @@ protected:
 private:
 	FPSComponent* m_pFPSComponent = nullptr;
 	TextRenderComponent* m_pTextRenderComponent = nullptr;
-	float m_FPSRefreshInterval = 0.3f;
+	float m_FPSRefreshInterval = 0.5f;
 	float m_ElapsedTime = 0;
 };
 

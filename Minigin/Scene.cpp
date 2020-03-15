@@ -15,6 +15,14 @@ void Scene::Add(const std::shared_ptr<SceneObject>& object)
 	m_Objects.push_back(object);
 }
 
+void dae::Scene::Initialize()
+{
+	for (auto& object : m_Objects)
+	{
+		object->Initialize();
+	}
+}
+
 void Scene::Update(float deltaTime)
 {
 	for(auto& object : m_Objects)

@@ -9,6 +9,7 @@ namespace dae
 	public:
 		Scene& CreateScene(const std::string& name);
 
+		void Initialize();
 		void Update(float deltaTime);
 		void Render();
 	private:
