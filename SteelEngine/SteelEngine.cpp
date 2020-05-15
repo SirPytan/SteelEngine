@@ -91,37 +91,37 @@ void dae::SteelEngine::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
+	
+	auto& renderer = Renderer::GetInstance();
+	auto& sceneManager = SceneManager::GetInstance();
+	auto& input = InputManager::GetInstance();
+
+	auto lastTime = std::chrono::high_resolution_clock::now();
+	float lag = 0.0f;
+	float secondsPerUpdate = 0.02f;
+	bool doContinue = true;
+
+	sceneManager.Initialize();
+	while (doContinue)
 	{
-		auto& renderer = Renderer::GetInstance();
-		auto& sceneManager = SceneManager::GetInstance();
-		auto& input = InputManager::GetInstance();
+		const auto currentTime = high_resolution_clock::now();
+		float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+		lastTime = currentTime;
+		lag += deltaTime;
 
-		auto lastTime = std::chrono::high_resolution_clock::now();
-		float lag = 0.0f;
-		float secondsPerUpdate = 0.02f;
-		bool doContinue = true;
+		doContinue = input.ProcessInput();
 
-		sceneManager.Initialize();
-		while (doContinue)
+		//Normal Update?
+
+		while (lag >= secondsPerUpdate)
 		{
-			const auto currentTime = high_resolution_clock::now();
-			float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-			lastTime = currentTime;
-			lag += deltaTime;
-
-			doContinue = input.ProcessInput();
-
-			//Normal Update?
-
-			while (lag >= secondsPerUpdate)
-			{
-				//FixedUpdate?
-				sceneManager.Update(deltaTime);
-				lag -= secondsPerUpdate;			 
-			}
-			renderer.Render();
+			//FixedUpdate?
+			sceneManager.Update(deltaTime);
+			lag -= secondsPerUpdate;			 
 		}
+		renderer.Render();
 	}
+	
 
 	Cleanup();
 }

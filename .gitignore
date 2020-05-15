@@ -27,7 +27,7 @@
 #*.lib
 
 # Executables
-*.exe
+#*.exe
 *.out
 *.app
 
@@ -36,5 +36,7 @@
 Win32/
 x64/Debug
 x64/Release
-Minigin/Win32/
-Minigin/x64
+SteelEngine/Win32
+SteelEngine/x64
+BubbleBobble/Win32
+BubbleBobble/x64
