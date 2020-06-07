@@ -1,4 +1,21 @@
-﻿  SteelEngine.vcxproj -> D:\_Prog4\SteelEngine\x64\Debug\SteelEngine.lib
+﻿  SteelEnginePCH.cpp
+  BaseComponent.cpp
+  Font.cpp
+  FPSComponent.cpp
+  FPSScript.cpp
+  GameObject.cpp
+  InputManager.cpp
+  SteelEngineGame.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  TextObject.cpp
+  TextRenderComponent.cpp
+  Texture2D.cpp
+  Transform.cpp
+  Generating Code...
+  SteelEngine.vcxproj -> D:\_Prog4\SteelEngine\x64\Debug\SteelEngine.lib
   D:\_Prog4\SteelEngine\3rdParty\SDL2\lib\x64\SDL2.dll
   1 Datei(en) kopiert
   D:\_Prog4\SteelEngine\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll

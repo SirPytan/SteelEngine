@@ -2,7 +2,8 @@
 
 #pragma region
 //*****************************************************************************
-//Declare templates for deleting objects and useful macros 
+//Declare templates for deleting objects and useful macros
+//Author: Matthieu Delaere
 //*****************************************************************************
 template<class T>
 inline void SafeDelete(T& pObjectToDelete)
@@ -15,12 +16,12 @@ inline void SafeDelete(T& pObjectToDelete)
 }
 
 template<typename T>
-inline void Clamp(T& value, T hi, T lo)
+inline void Clamp(T& value, T high, T low)
 {
-	if (value > hi)
-		value = hi;
+	if (value > high)
+		value = high;
 
-	if (value < lo)
-		value = lo;
+	if (value < low)
+		value = low;
 }
 #pragma endregion Templates & Macros

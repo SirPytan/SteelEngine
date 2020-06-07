@@ -213,6 +213,17 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="EMath.h" />
+    <ClInclude Include="EMathUtilities.h" />
+    <ClInclude Include="EMatrix.h" />
+    <ClInclude Include="EMatrix2.h" />
+    <ClInclude Include="EMatrix3.h" />
+    <ClInclude Include="EPoint.h" />
+    <ClInclude Include="EPoint2.h" />
+    <ClInclude Include="EPoint3.h" />
+    <ClInclude Include="EVector.h" />
+    <ClInclude Include="EVector2.h" />
+    <ClInclude Include="EVector3.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="FPSScript.h" />
