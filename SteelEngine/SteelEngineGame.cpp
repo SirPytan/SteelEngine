@@ -11,6 +11,7 @@
 using namespace std;
 using namespace std::chrono;
 using namespace dae;
+using namespace SteelEngine;
 
 SteelEngineGame::SteelEngineGame(std::string gameName)
 	: m_GameName(gameName)
@@ -88,7 +89,7 @@ void SteelEngineGame::InitializeWindow(std::string windowTitle, int winWidth, in
 void SteelEngineGame::InitializeGame()
 {
 	//Space for additional Game Engine Initalizations
-
+	InputManager::GetInstance().Initialize();
 	//Game Initialize
 	Initialize();
 }

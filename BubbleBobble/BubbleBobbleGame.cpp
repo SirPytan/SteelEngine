@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Transform.h"
+#include "InputTestComponent.h"
 
 BubbleBobbleGame::BubbleBobbleGame()
 	: SteelEngineGame("BubbleBobble - by 2DAE02_Patyk_Daniel - Prog4")
@@ -21,6 +22,11 @@ void BubbleBobbleGame::Initialize()
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
+	InputTestComponent* pInputTest = new InputTestComponent();
+	go->AddComponent(pInputTest);
+	scene.Add(go);
+
+	go = std::make_shared<GameObject>();
 	go->SetTexture("background.jpg");
 	scene.Add(go);
 

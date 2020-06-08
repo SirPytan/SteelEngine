@@ -5,7 +5,7 @@
 //Source:
 //https://docs.microsoft.com/en-us/windows/win32/xinput/getting-started-with-xinput#multiple-controllers
 
-void dae::InputManager::Initialize()
+void SteelEngine::InputManager::Initialize()
 {
 	//Checking which controller are connected
 	DWORD dwResult;
@@ -29,7 +29,7 @@ void dae::InputManager::Initialize()
 	}
 }
 
-bool dae::InputManager::ProcessInput()
+bool SteelEngine::InputManager::ProcessInput()
 {
 	DWORD dwResult;
 	for (DWORD i = 0; i < XUSER_MAX_COUNT; i++)
@@ -72,42 +72,39 @@ bool dae::InputManager::ProcessInput()
 }
 
 
-
-
-
-bool dae::InputManager::IsPressed(ControllerButton button,int controllerId) const
+bool SteelEngine::InputManager::IsPressed(ControllerButton button,int controllerId) const
 {
 	if (m_XInputStates[controllerId].first)
 	{
 		switch (button)
 		{
-		case ControllerButton::ButtonA:
+		case ControllerButton::A:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-		case ControllerButton::ButtonB:
+		case ControllerButton::B:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-		case ControllerButton::ButtonX:
+		case ControllerButton::X:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-		case ControllerButton::ButtonY:
+		case ControllerButton::Y:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-		case ControllerButton::ButtonDpadUp:
+		case ControllerButton::DpadUp:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP;
-		case ControllerButton::ButtonDpadDown:
+		case ControllerButton::DpadDown:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN;
-		case ControllerButton::ButtonDpadLeft:
+		case ControllerButton::DpadLeft:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT;
-		case ControllerButton::ButtonDpadRight:
+		case ControllerButton::DpadRight:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT;
-		case ControllerButton::ButtonStart:
+		case ControllerButton::Start:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_START;
-		case ControllerButton::ButtonBack:
+		case ControllerButton::Back:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_BACK;
-		case ControllerButton::ButtonLeftThumb:
+		case ControllerButton::LeftThumb:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_THUMB;
-		case ControllerButton::ButtonRightThumb:
+		case ControllerButton::RightThumb:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_THUMB;
-		case ControllerButton::ButtonLeftShoulder:
+		case ControllerButton::LeftShoulder:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER;
-		case ControllerButton::ButtonRightShoulder:
+		case ControllerButton::RightShoulder:
 			return m_XInputStates[controllerId].second.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER;
 		default: return false;
 		}
@@ -117,5 +114,109 @@ bool dae::InputManager::IsPressed(ControllerButton button,int controllerId) cons
 		std::cout << "Controller with ID: " << controllerId << " was not connected. Could not handle IsPressed(). Returning false.\n";
 		return false;
 	}
+}
+
+FVector4 SteelEngine::InputManager::GetThumbStickDirectionAndMagnitude(ControllerStick stick, int controllerId) const
+{
+	FVector2 stickValues{};
+	FVector2 stickDirection{};
+	int deadzone{};
+
+	switch (stick)
+	{
+	case SteelEngine::ControllerStick::Left:
+		stickValues.x = m_XInputStates[controllerId].second.Gamepad.sThumbLX;
+		stickValues.y = m_XInputStates[controllerId].second.Gamepad.sThumbLY;
+		deadzone = XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
+		break;
+	case SteelEngine::ControllerStick::Right:
+		stickValues.x = m_XInputStates[controllerId].second.Gamepad.sThumbRX;
+		stickValues.y = m_XInputStates[controllerId].second.Gamepad.sThumbRY;
+		deadzone = XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE;
+		break;
+	default:
+		std::cout << "No valid enum\n";
+		return FVector4();
+		break;
+	}
+
+
+	//determine how far the controller is pushed
+	float magnitude = sqrt(stickValues.x * stickValues.x + stickValues.y * stickValues.y);
+
+	//determine the direction the controller is pushed
+	stickDirection.x = stickValues.x / magnitude;
+	stickDirection.y = stickValues.y / magnitude;
+
+	float normalizedMagnitude = 0;
+
+	FVector4 stickDirectionAndMagnitude{};
+
+
+	//check if the controller is outside a circular dead zone
+	if (magnitude > deadzone)
+	{
+		//clip the magnitude at its expected maximum value
+		if (magnitude > 32767) magnitude = 32767;
+
+		//adjust magnitude relative to the end of the dead zone
+		magnitude -= deadzone;
+
+		//optionally normalize the magnitude with respect to its expected range
+		//giving a magnitude value of 0.0 to 1.0
+		normalizedMagnitude = magnitude / (32767 - deadzone);
+
+		stickDirectionAndMagnitude.x = stickDirection.x;
+		stickDirectionAndMagnitude.y = stickDirection.y;
+		stickDirectionAndMagnitude.z = magnitude;
+		stickDirectionAndMagnitude.w = normalizedMagnitude;
+
+	}
+	else //if the controller is in the deadzone zero out the magnitude
+	{
+		magnitude = 0.0f;
+		normalizedMagnitude = 0.0f;
+
+		stickDirectionAndMagnitude.x = 0.0f;
+		stickDirectionAndMagnitude.y = 0.0f;
+		stickDirectionAndMagnitude.z = magnitude;
+		stickDirectionAndMagnitude.w = normalizedMagnitude;
+	}
+
+	return stickDirectionAndMagnitude; //Direction is normalized
+}
+
+float SteelEngine::InputManager::GetTriggerValue(ControllerTrigger trigger, int controllerId) const
+{
+	float triggerValue{};
+
+	switch (trigger)
+	{
+	case SteelEngine::ControllerTrigger::Left:
+		triggerValue = m_XInputStates[controllerId].second.Gamepad.bLeftTrigger; //The value is between 0 and 255
+		break;
+	case SteelEngine::ControllerTrigger::Right:
+		triggerValue = m_XInputStates[controllerId].second.Gamepad.bRightTrigger;
+		break;
+	default:
+		std::cout << "No valid enum\n";
+		return 0.0f;
+		break;
+	}
+
+	if (triggerValue > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
+		return triggerValue / 255.f;
+	else
+		return 0.0f;
+}
+
+//Maybe put this in a rumble manager, if it needs more functionality
+void SteelEngine::InputManager::SetRumble(int controllerId, float left, float right) const
+{
+	XINPUT_VIBRATION vibration;
+	ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
+	vibration.wLeftMotorSpeed = (WORD)(Clamp((int)(left*65535), 0, 65535)); // use any value between 0-65535 here
+	vibration.wRightMotorSpeed = (WORD)(Clamp((int)(right * 65535), 0, 65535)); // use any value between 0-65535 here
+	XInputSetState((DWORD)controllerId, &vibration);
 }
 

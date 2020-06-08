@@ -218,18 +218,22 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="EMatrix.h" />
     <ClInclude Include="EMatrix2.h" />
     <ClInclude Include="EMatrix3.h" />
+    <ClInclude Include="EMatrix4.h" />
     <ClInclude Include="EPoint.h" />
     <ClInclude Include="EPoint2.h" />
     <ClInclude Include="EPoint3.h" />
+    <ClInclude Include="EPoint4.h" />
     <ClInclude Include="EVector.h" />
     <ClInclude Include="EVector2.h" />
     <ClInclude Include="EVector3.h" />
+    <ClInclude Include="EVector4.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="FPSScript.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InputTestComponent.h" />
     <ClInclude Include="SteelEngineGame.h" />
     <ClInclude Include="SteelEnginePCH.h" />
     <ClInclude Include="SceneObject.h" />
@@ -250,6 +254,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="FPSScript.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InputTestComponent.cpp" />
     <ClCompile Include="SteelEngineGame.cpp" />
     <ClCompile Include="SteelEnginePCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

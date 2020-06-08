@@ -124,6 +124,18 @@
     <ClInclude Include="EVector3.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="EMatrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EPoint4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EVector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTestComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -173,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="SteelEngineGame.cpp">
       <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTestComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
