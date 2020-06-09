@@ -21,6 +21,7 @@ public:
 
 	void SetColor(SDL_Color color);
 	void SetText(const std::string& text);
+	void SetTextSize(unsigned int size);
 
 protected:
 	void Initialize() override;

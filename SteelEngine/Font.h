@@ -13,12 +13,15 @@ namespace dae
 		explicit Font(const std::string& fullPath, unsigned int size);
 		~Font();
 
+		void SetSize(unsigned int size);
+
 		Font(const Font &) = delete;
 		Font(Font &&) = delete;
 		Font & operator= (const Font &) = delete;
 		Font & operator= (const Font &&) = delete;
 	private:
-		_TTF_Font* m_Font;
+		_TTF_Font* m_pFont;
 		unsigned int m_Size;
+		const std::string m_FontPath;
 	};
 }

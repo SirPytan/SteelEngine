@@ -1,4 +1,7 @@
-﻿  InputTestComponent.cpp
+﻿  InputManager.cpp
+  InputTestComponent.cpp
+  SteelEngineGame.cpp
+  Generating Code...
   SteelEngine.vcxproj -> D:\_Prog4\SteelEngine\x64\Debug\SteelEngine.lib
   D:\_Prog4\SteelEngine\3rdParty\SDL2\lib\x64\SDL2.dll
   1 Datei(en) kopiert

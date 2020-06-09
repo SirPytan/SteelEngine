@@ -7,6 +7,8 @@
 #ifndef ELITE_MATH_UTILITIES
 #define ELITE_MATH_UTILITIES
 
+#undef min //Because of redefinition
+
 //Standard C++ includes
 #include <cstdint>
 #include <cstdlib>
@@ -35,7 +37,7 @@ namespace Elite
 		// and multiplied by the desired precision in ULPs (units in the last place)
 		return std::abs(a - b) <= std::numeric_limits<T>::epsilon() * std::abs(a + b) * ulp
 			// unless the result is subnormal
-			;//|| std::abs(a - b) < std::numeric_limits<T>::min();
+			|| std::abs(a - b) < std::numeric_limits<T>::min();
 	}
 
 	/*! An accurate inverse square root*/

@@ -21,6 +21,12 @@ void TextRenderComponent::SetText(const std::string& text)
 	m_NeedsUpdate = true;
 }
 
+void TextRenderComponent::SetTextSize(unsigned int size)
+{
+	m_Font->SetSize(size);
+	m_NeedsUpdate = true;
+}
+
 void TextRenderComponent::Initialize()
 {
 }
