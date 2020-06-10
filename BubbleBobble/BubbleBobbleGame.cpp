@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "Transform.h"
 #include "InputTestComponent.h"
+#include "SpriteComponent.h"
 
 BubbleBobbleGame::BubbleBobbleGame()
 	: SteelEngineGame("BubbleBobble - by 2DAE02_Patyk_Daniel - Prog4")
@@ -33,6 +34,15 @@ void BubbleBobbleGame::Initialize()
 	go = std::make_shared<GameObject>();
 	go->SetTexture("logo.png");
 	go->SetPosition(216, 180);
+	scene.Add(go);
+
+	//Sprites0
+	go = std::make_shared<GameObject>();
+	go->SetPosition(200, 180);
+	SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 2);
+	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1);
+	pSprite->SetDestinationRectPosition((int)go->GetPosition().x, (int)go->GetPosition().y);
+	go->AddComponent(pSprite);
 	scene.Add(go);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);

@@ -47,7 +47,7 @@ namespace dae
 
 	private:
 		Transform m_Transform;
-		std::shared_ptr<Texture2D> m_Texture{};
+		std::shared_ptr<Texture2D> m_pTexture{};
 
 		std::vector<BaseComponent*> m_pComponents;
 	};

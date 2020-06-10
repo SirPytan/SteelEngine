@@ -35,17 +35,17 @@ void dae::GameObject::Render() const
 		pComp->Render();
 	}
 
-	if (m_Texture)
+	if (m_pTexture)
 	{
 		const auto pos = m_Transform.GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);
 	}
 
 }
 
 void dae::GameObject::SetTexture(const std::string& filename)
 {
-	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
+	m_pTexture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
 void dae::GameObject::SetPosition(float x, float y)
@@ -55,7 +55,7 @@ void dae::GameObject::SetPosition(float x, float y)
 
 dae::Vector2 dae::GameObject::GetPosition()
 {
-	Vector2 pos;
+	Vector2 pos{};
 	pos.x = m_Transform.GetPosition().x;
 	pos.y = m_Transform.GetPosition().y;
 	return pos;

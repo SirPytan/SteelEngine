@@ -1,21 +1,22 @@
 #include "SteelEnginePCH.h"
 #include "SpriteComponent.h"
 #include "Renderer.h"
+#include "ResourceManager.h"
 
-SpriteComponent::SpriteComponent(Texture2D* pTexture, const int cols, const int rows, int framesPerSec, float scale)
-	: m_pTexture{pTexture}
-	, m_SpriteSheetWidth{ pTexture->GetWidth() }
-	, m_SpriteSheetHeight{ pTexture->GetHeight() }
+SpriteComponent::SpriteComponent(const std::string& textureFullPath, const int cols, const int rows, int framesPerSec, float scale)
+	: m_pTexture{ ResourceManager::GetInstance().LoadTexture(textureFullPath) }
+	, m_SpriteSheetWidth{ m_pTexture->GetWidth() }
+	, m_SpriteSheetHeight{ m_pTexture->GetHeight() }
 	, m_Cols{ cols }
 	, m_Rows{ rows }
 	, m_FramesPerSec{ framesPerSec }
 	, m_Scale{ scale }
 	, m_CurrentFrame{ 0 }
 {
-	if (m_pTexture == nullptr)
-	{
-		std::cout << "Sprite Texture is nullpointer";
-	}
+	//if (m_pTexture == nullptr)
+	//{
+	//	std::cout << "Sprite Texture is nullpointer";
+	//}
 	m_FrameTime = 1.0f / m_FramesPerSec;
 
 	InitDestinationRect();
@@ -27,8 +28,8 @@ void SpriteComponent::InitDestinationRect()
 	//TopLeftCorner
 	m_DestinationRect.w = (int)((m_SpriteSheetWidth / m_Cols) * m_Scale);
 	m_DestinationRect.h = (int)((m_SpriteSheetHeight / m_Rows) * m_Scale);
-	m_DestinationRect.x = (int)(GetGameObject()->GetPosition().x); 
-	m_DestinationRect.y = (int)(GetGameObject()->GetPosition().y);
+	m_DestinationRect.x = 0; 
+	m_DestinationRect.y = 0;
 }
 
 void SpriteComponent::InitSourceRect()
@@ -49,13 +50,18 @@ void SpriteComponent::SetAnimationParameters(AnimationType type, unsigned int co
 	m_SourceRect.y = m_Row * m_SourceRect.h;
 }
 
+void SpriteComponent::SetDestinationRectPosition(int x, int y)
+{
+	m_DestinationRect.x = x;
+	m_DestinationRect.y = y;
+}
+
 void SpriteComponent::Initialize()
 {
 }
 
 void SpriteComponent::Update(float deltaTime)
 {
-
 	m_DestinationRect.x = (int)(GetGameObject()->GetPosition().x);
 	m_DestinationRect.y = (int)(GetGameObject()->GetPosition().y);
 
@@ -110,5 +116,16 @@ void SpriteComponent::Update(float deltaTime)
 
 void SpriteComponent::Render()
 {
-	dae::Renderer::GetInstance().RenderTexture(*m_pTexture, m_SourceRect, m_DestinationRect);
+	if (m_SourceRect.x + m_SourceRect.w > m_pTexture->GetWidth())
+	{
+		std::cout << "Current Frame: " << m_CurrentFrame << " Texture width: " << m_pTexture->GetWidth() <<"\n";
+		std::cout << "SourceRect to wide(x: " << m_SourceRect.x << " width: " << m_SourceRect.w << " sum: " << m_SourceRect.x + m_SourceRect.w << ")\n";
+	}
+	else if (m_SourceRect.y + m_SourceRect.h > m_pTexture->GetHeight())
+	{
+		std::cout << "Current Frame: " << m_CurrentFrame << " Texture height: " << m_pTexture->GetHeight() << "\n";
+		std::cout << "SourceRect to high(y: " << m_SourceRect.y << " height: " << m_SourceRect.h << " sum: " << m_SourceRect.y + m_SourceRect.h << ")\n";
+	}
+	else
+		dae::Renderer::GetInstance().RenderTexture(*m_pTexture, m_SourceRect, m_DestinationRect);
 }
