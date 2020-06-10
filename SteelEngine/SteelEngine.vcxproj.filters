@@ -136,6 +136,9 @@
     <ClInclude Include="InputTestComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -187,6 +190,9 @@
       <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="InputTestComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
