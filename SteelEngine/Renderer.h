@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include <SDL.h>
 
 struct SDL_Window;
 struct SDL_Renderer;
@@ -22,9 +23,9 @@ namespace dae
 		void RenderTexture(const Texture2D& texture, int x, int y, int width, int height) const;
 		void RenderTexture(const Texture2D& texture, const SDL_Rect& sourceRect, const SDL_Rect& destinationRect) const;
 
-		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
+		SDL_Renderer* GetSDLRenderer() const { return m_pRenderer; }
 	private:
-		SDL_Renderer* m_Renderer{};
+		SDL_Renderer* m_pRenderer{};
 	};
 }
 
