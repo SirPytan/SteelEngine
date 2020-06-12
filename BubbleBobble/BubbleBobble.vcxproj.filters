@@ -1,33 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="LevelReader">
+      <UniqueIdentifier>{f94a7406-2ac9-4167-8e87-07ff249ccd1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{1568402f-c660-426c-991a-f8fa275e0d72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="LevelReader.h">
+      <Filter>LevelReader</Filter>
     </ClInclude>
     <ClInclude Include="BubbleBobbleGame.h">
-      <Filter>Header Files</Filter>
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyData.h">
+      <Filter>LevelReader</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelData.h">
+      <Filter>LevelReader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BubbleBobbleGame.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LevelReader.cpp">
+      <Filter>LevelReader</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleBobbleGame.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyData.cpp">
+      <Filter>LevelReader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

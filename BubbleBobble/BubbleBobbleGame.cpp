@@ -12,6 +12,7 @@
 #include "Transform.h"
 #include "InputTestComponent.h"
 #include "SpriteComponent.h"
+#include "LevelReader.h"
 
 BubbleBobbleGame::BubbleBobbleGame()
 	: SteelEngineGame("BubbleBobble - by 2DAE02_Patyk_Daniel - Prog4")
@@ -20,21 +21,26 @@ BubbleBobbleGame::BubbleBobbleGame()
 
 void BubbleBobbleGame::Initialize()
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	LevelReader levelReader{};
+	levelReader.ReadLevels();
+	levelReader.ReadEnemies();
+
+
+	Scene* pScene = SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
 	InputTestComponent* pInputTest = new InputTestComponent();
 	go->AddComponent(pInputTest);
-	scene.Add(go);
+	pScene->Add(go);
 
 	go = std::make_shared<GameObject>();
 	go->SetTexture("background.jpg");
-	scene.Add(go);
+	pScene->Add(go);
 
 	go = std::make_shared<GameObject>();
 	go->SetTexture("logo.png");
 	go->SetPosition(216, 180);
-	scene.Add(go);
+	pScene->Add(go);
 
 	//Sprites0
 	go = std::make_shared<GameObject>();
@@ -43,12 +49,12 @@ void BubbleBobbleGame::Initialize()
 	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1);
 	pSprite->SetDestinationRectPosition((int)go->GetPosition().x, (int)go->GetPosition().y);
 	go->AddComponent(pSprite);
-	scene.Add(go);
+	pScene->Add(go);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(80, 20);
-	scene.Add(to);
+	pScene->Add(to);
 
 	font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 15);
 	go = std::make_shared<GameObject>();
@@ -60,5 +66,6 @@ void BubbleBobbleGame::Initialize()
 	go->AddComponent(pTextRender);
 	go->AddComponent(pFPSScript);
 	go->SetPosition(10, 10);
-	scene.Add(go);
+	pScene->Add(go);
+	SceneManager::GetInstance().SetActivScene(pScene);
 }

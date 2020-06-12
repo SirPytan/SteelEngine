@@ -18,6 +18,7 @@ d:\_prog4\steelengine\steelengine\x64\debug\gameobject.obj
 d:\_prog4\steelengine\steelengine\x64\debug\fpsscript.obj
 d:\_prog4\steelengine\steelengine\x64\debug\fpscomponent.obj
 d:\_prog4\steelengine\steelengine\x64\debug\font.obj
+d:\_prog4\steelengine\steelengine\x64\debug\binaryreader.obj
 d:\_prog4\steelengine\steelengine\x64\debug\basecomponent.obj
 d:\_prog4\steelengine\x64\debug\steelengine.lib
 d:\_prog4\steelengine\steelengine\x64\debug\steelengine.tlog\cl.command.1.tlog

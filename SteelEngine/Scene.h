@@ -6,9 +6,10 @@ namespace dae
 	class SceneObject;
 	class Scene
 	{
-		friend Scene& SceneManager::CreateScene(const std::string& name);
+		friend Scene* SceneManager::CreateScene(const std::string& name);
 	public:
 		void Add(const std::shared_ptr<SceneObject>& object);
+		std::string GetName() const { return m_Name; }
 
 		void Initialize();
 		void Update(float deltaTime);

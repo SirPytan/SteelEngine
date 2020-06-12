@@ -20,11 +20,13 @@ void SteelEngine::InputManager::Initialize()
 		{
 			//Controller is connected
 			m_XInputStates[i].first = true;
+			std::cout << "Controller with id: " << i << " is connected.\n";
 		}
 		else
 		{
 			//Controller is not connected
 			m_XInputStates[i].first = false;
+			std::cout << "Controller with id: " << i << " is NOT connected.\n";
 		}
 	}
 }
@@ -111,7 +113,7 @@ bool SteelEngine::InputManager::IsPressed(ControllerButton button,int controller
 	}
 	else
 	{
-		std::cout << "Controller with ID: " << controllerId << " was not connected. Could not handle IsPressed(). Returning false.\n";
+		//std::cout << "Controller with ID: " << controllerId << " was not connected. Could not handle IsPressed(). Returning false.\n";
 		return false;
 	}
 }

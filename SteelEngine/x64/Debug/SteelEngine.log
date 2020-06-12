@@ -1,4 +1,11 @@
-﻿  GameObject.cpp
+﻿  BinaryReader.cpp
+Scene.obj : warning LNK4006: "private: static unsigned int dae::Scene::m_IdCounter" (?m_IdCounter@Scene@dae@@0IA) already defined in SceneManager.obj; second definition ignored
+SceneManager.obj : warning LNK4006: "public: void __cdecl dae::Scene::Add(class std::shared_ptr<class dae::SceneObject> const &)" (?Add@Scene@dae@@QEAAXAEBV?$shared_ptr@VSceneObject@dae@@@std@@@Z) already defined in SceneManager.obj; second definition ignored
+SceneManager.obj : warning LNK4006: "public: void __cdecl dae::Scene::Initialize(void)" (?Initialize@Scene@dae@@QEAAXXZ) already defined in SceneManager.obj; second definition ignored
+SceneManager.obj : warning LNK4006: "public: void __cdecl dae::Scene::Update(float)" (?Update@Scene@dae@@QEAAXM@Z) already defined in SceneManager.obj; second definition ignored
+SceneManager.obj : warning LNK4006: "public: void __cdecl dae::Scene::Render(void)const " (?Render@Scene@dae@@QEBAXXZ) already defined in SceneManager.obj; second definition ignored
+SceneManager.obj : warning LNK4006: "public: __cdecl dae::Scene::~Scene(void)" (??1Scene@dae@@QEAA@XZ) already defined in SceneManager.obj; second definition ignored
+SceneManager.obj : warning LNK4006: "private: __cdecl dae::Scene::Scene(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0Scene@dae@@AEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in SceneManager.obj; second definition ignored
   SteelEngine.vcxproj -> D:\_Prog4\SteelEngine\x64\Debug\SteelEngine.lib
   D:\_Prog4\SteelEngine\3rdParty\SDL2\lib\x64\SDL2.dll
   1 Datei(en) kopiert

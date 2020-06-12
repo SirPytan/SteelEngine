@@ -97,6 +97,7 @@ void SteelEngineGame::InitializeGame()
 void SteelEngineGame::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
+	SceneManager::GetInstance().Cleanup();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();

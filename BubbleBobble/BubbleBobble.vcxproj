@@ -166,11 +166,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BubbleBobbleGame.cpp" />
+    <ClCompile Include="EnemyData.cpp" />
+    <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BubbleBobbleGame.h" />
+    <ClInclude Include="EnemyData.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="LevelData.h" />
+    <ClInclude Include="LevelReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SteelEngine\SteelEngine.vcxproj">
