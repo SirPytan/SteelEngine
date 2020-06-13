@@ -214,6 +214,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="BinaryReader.h" />
+    <ClInclude Include="BoxCollider2D.h" />
+    <ClInclude Include="Command.h" />
     <ClInclude Include="EMath.h" />
     <ClInclude Include="EMathUtilities.h" />
     <ClInclude Include="EMatrix.h" />
@@ -235,6 +237,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputTestComponent.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="SteelEngineGame.h" />
     <ClInclude Include="SteelEnginePCH.h" />
@@ -244,20 +247,25 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Structs.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TextRenderComponent.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Vector2f.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="BinaryReader.cpp" />
+    <ClCompile Include="BoxCollider2D.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="FPSScript.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="InputTestComponent.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="SteelEngineGame.cpp" />
     <ClCompile Include="SteelEnginePCH.cpp">
@@ -271,10 +279,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Structs.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextRenderComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Vector2f.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,3 +1,4 @@
+#pragma once
 #include "SteelEnginePCH.h"
 #include "SteelEngineGame.h"
 #include "SceneManager.h"

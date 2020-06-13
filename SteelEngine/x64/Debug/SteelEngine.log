@@ -1,4 +1,28 @@
-﻿  SpriteComponent.cpp
+﻿  SteelEnginePCH.cpp
+  BaseComponent.cpp
+  BinaryReader.cpp
+  Font.cpp
+  FPSComponent.cpp
+  FPSScript.cpp
+  GameObject.cpp
+  InputManager.cpp
+  InputTestComponent.cpp
+  SpriteComponent.cpp
+  SteelEngineGame.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  Structs.cpp
+  TextObject.cpp
+  TextRenderComponent.cpp
+  Texture2D.cpp
+  Transform.cpp
+  Utils.cpp
+  Generating Code...
+  Compiling...
+  Vector2f.cpp
+  Generating Code...
 Scene.obj : warning LNK4006: "private: static unsigned int dae::Scene::m_IdCounter" (?m_IdCounter@Scene@dae@@0IA) already defined in SceneManager.obj; second definition ignored
 SceneManager.obj : warning LNK4006: "public: void __cdecl dae::Scene::Add(class std::shared_ptr<class dae::SceneObject> const &)" (?Add@Scene@dae@@QEAAXAEBV?$shared_ptr@VSceneObject@dae@@@std@@@Z) already defined in SceneManager.obj; second definition ignored
 SceneManager.obj : warning LNK4006: "public: void __cdecl dae::Scene::Initialize(void)" (?Initialize@Scene@dae@@QEAAXXZ) already defined in SceneManager.obj; second definition ignored

@@ -35,6 +35,9 @@
     <Filter Include="BinaryReader">
       <UniqueIdentifier>{c365b0bc-b578-4cd9-bf75-76b56fd78379}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DAE First Semester Framework files">
+      <UniqueIdentifier>{7fdf9639-ad79-49a5-a0e6-40b9df03aa93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSComponent.h">
@@ -145,6 +148,20 @@
     <ClInclude Include="BinaryReader.h">
       <Filter>BinaryReader</Filter>
     </ClInclude>
+    <ClInclude Include="Vector2f.h">
+      <Filter>DAE First Semester Framework files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>DAE First Semester Framework files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>DAE First Semester Framework files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Command.h">
+      <Filter>InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -204,5 +221,16 @@
     <ClCompile Include="BinaryReader.cpp">
       <Filter>BinaryReader</Filter>
     </ClCompile>
+    <ClCompile Include="Vector2f.cpp">
+      <Filter>DAE First Semester Framework files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>DAE First Semester Framework files</Filter>
+    </ClCompile>
+    <ClCompile Include="Structs.cpp">
+      <Filter>DAE First Semester Framework files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="BoxCollider2D.cpp" />
   </ItemGroup>
 </Project>

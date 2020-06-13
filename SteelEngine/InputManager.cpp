@@ -53,6 +53,15 @@ bool SteelEngine::InputManager::ProcessInput()
 		}
 	}
 
+
+	for (std::map<ControllerButton, Command*>::const_iterator it = m_Commands.cbegin(); it != m_Commands.cend(); ++it)
+	{
+		if (IsPressed(it->first, it->second->GetControllerId()))
+		{
+			it->second->Execute();
+		}
+	}
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
@@ -220,5 +229,16 @@ void SteelEngine::InputManager::SetRumble(int controllerId, float left, float ri
 	vibration.wLeftMotorSpeed = (WORD)(Clamp((int)(left*65535), 0, 65535)); // use any value between 0-65535 here
 	vibration.wRightMotorSpeed = (WORD)(Clamp((int)(right * 65535), 0, 65535)); // use any value between 0-65535 here
 	XInputSetState((DWORD)controllerId, &vibration);
+}
+
+bool SteelEngine::InputManager::AddCommand(Command* pCommand, ControllerButton button)
+{
+	if (pCommand != nullptr)
+	{
+		m_Commands[button] = pCommand;
+		return true;
+	}
+	else
+		return false;
 }
 
