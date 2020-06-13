@@ -18,7 +18,8 @@ enum class AnimationType : int
 class SpriteComponent : public dae::BaseComponent
 {
 public:
-	SpriteComponent(const std::string& textureFullPath, const int numberOfColumns, const int numberOfRows, int framesPerSec, float scale);
+	SpriteComponent(const std::string& texturePath, const int numberOfColumns, const int numberOfRows, int framesPerSec, float scale);
+	SpriteComponent(std::shared_ptr<Texture2D> texture2D, const int numberOfColumns, const int numberOfRows, int framesPerSec, float scale);
 	SpriteComponent(const SpriteComponent& other) = delete;
 	SpriteComponent(SpriteComponent&& other) noexcept = delete;
 	SpriteComponent& operator=(const SpriteComponent& other) = delete;
@@ -26,7 +27,7 @@ public:
 	//~SpriteComponent() override;
 
 	//Row and Column start with 1,2,3,...
-	void SetAnimationParameters(AnimationType type, unsigned int column, unsigned int row);
+	void SetAnimationParameters(AnimationType type, unsigned int column, unsigned int row, bool isStatic);
 	void SetDestinationRectPosition(int x, int y);
 	unsigned int GetRow() { return m_Row; }
 	unsigned int GetColumn() { return m_Column; }
@@ -49,6 +50,7 @@ private:
 	AnimationType m_AnimationType = AnimationType::OneFrame;
 	unsigned int m_Row{};
 	unsigned int m_Column{};
+	bool m_IsStatic = false;
 
 	//Sprite related datamembers
 	int m_CurrentFrame;

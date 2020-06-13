@@ -25,38 +25,50 @@ void BubbleBobbleGame::Initialize()
 	levelReader.ReadLevels();
 	levelReader.ReadEnemies();
 
-
-	Scene* pScene = SceneManager::GetInstance().CreateScene("Demo");
+	Scene* pScene = SceneManager::GetInstance().CreateScene("Game");
 
 	auto go = std::make_shared<GameObject>();
 	InputTestComponent* pInputTest = new InputTestComponent();
 	go->AddComponent(pInputTest);
 	pScene->Add(go);
 
-	go = std::make_shared<GameObject>();
-	go->SetTexture("background.jpg");
-	pScene->Add(go);
+	//go = std::make_shared<GameObject>();
+	//go->SetTexture("background.jpg");
+	//pScene->Add(go);
 
-	go = std::make_shared<GameObject>();
-	go->SetTexture("logo.png");
-	go->SetPosition(216, 180);
-	pScene->Add(go);
+	auto level = std::make_shared<GameObject>();
+	auto texture = ResourceManager::GetInstance().LoadTexture("BigTiles.png");
+	for (TilePos tile : levelReader.GetLevel(0).GetTilePositions())
+	{
+		SpriteComponent* pSprite = new SpriteComponent(texture, 10, 10, 1, 1);
+		pSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
+		pSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
+		level->AddComponent(pSprite);
+	}
+	pScene->Add(level);
+
+
+	//go = std::make_shared<GameObject>();
+	//go->SetTexture("logo.png");
+	//go->SetPosition(216, 180);
+	//pScene->Add(go);
+
 
 	//Sprites0
 	go = std::make_shared<GameObject>();
 	go->SetPosition(200, 180);
-	SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 2);
-	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1);
+	SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 1);
+	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
 	pSprite->SetDestinationRectPosition((int)go->GetPosition().x, (int)go->GetPosition().y);
 	go->AddComponent(pSprite);
 	pScene->Add(go);
 
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-	to->SetPosition(80, 20);
-	pScene->Add(to);
+	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	//auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
+	//to->SetPosition(80, 20);
+	//pScene->Add(to);
 
-	font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 15);
+	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 15);
 	go = std::make_shared<GameObject>();
 	FPSComponent* pFPSComponent = new FPSComponent();
 	TextRenderComponent* pTextRender = new TextRenderComponent(font);

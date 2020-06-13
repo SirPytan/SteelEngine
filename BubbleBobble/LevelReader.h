@@ -10,6 +10,8 @@ public:
 	LevelReader();
 	bool ReadLevels();
 	bool ReadEnemies();
+	std::vector<LevelData> GetLevels() const { return m_Levels; }
+	LevelData GetLevel(unsigned int index) const { return m_Levels[index]; }
 
 private:
 	const std::string m_DataPath = "../Data/";

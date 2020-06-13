@@ -3,22 +3,32 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 
-SpriteComponent::SpriteComponent(const std::string& textureFullPath, const int cols, const int rows, int framesPerSec, float scale)
-	: m_pTexture{ ResourceManager::GetInstance().LoadTexture(textureFullPath) }
+SpriteComponent::SpriteComponent(const std::string& texturePath, const int numberOfColumns, const int numberOfRows, int framesPerSec, float scale)
+	: m_pTexture{ ResourceManager::GetInstance().LoadTexture(texturePath) }
 	, m_SpriteSheetWidth{ m_pTexture->GetWidth() }
 	, m_SpriteSheetHeight{ m_pTexture->GetHeight() }
-	, m_Cols{ cols }
-	, m_Rows{ rows }
+	, m_Cols{ numberOfColumns }
+	, m_Rows{ numberOfRows }
 	, m_FramesPerSec{ framesPerSec }
 	, m_Scale{ scale }
 	, m_CurrentFrame{ 0 }
 {
-	//if (m_pTexture == nullptr)
-	//{
-	//	std::cout << "Sprite Texture is nullpointer";
-	//}
 	m_FrameTime = 1.0f / m_FramesPerSec;
+	InitDestinationRect();
+	InitSourceRect();
+}
 
+SpriteComponent::SpriteComponent(std::shared_ptr<Texture2D> texture2D, const int numberOfColumns, const int numberOfRows, int framesPerSec, float scale)
+	: m_pTexture{ texture2D }
+	, m_SpriteSheetWidth{ m_pTexture->GetWidth() }
+	, m_SpriteSheetHeight{ m_pTexture->GetHeight() }
+	, m_Cols{ numberOfColumns }
+	, m_Rows{ numberOfRows }
+	, m_FramesPerSec{ framesPerSec }
+	, m_Scale{ scale }
+	, m_CurrentFrame{ 0 }
+{
+	m_FrameTime = 1.0f / m_FramesPerSec;
 	InitDestinationRect();
 	InitSourceRect();
 }
@@ -41,13 +51,14 @@ void SpriteComponent::InitSourceRect()
 }
 
 
-void SpriteComponent::SetAnimationParameters(AnimationType type, unsigned int column, unsigned int row)
+void SpriteComponent::SetAnimationParameters(AnimationType type, unsigned int column, unsigned int row, bool isStatic)
 {
 	m_AnimationType = type;
 	m_Column = column-1;
 	m_Row = row-1;
 	m_SourceRect.x = m_Column * m_SourceRect.w;
 	m_SourceRect.y = m_Row * m_SourceRect.h;
+	m_IsStatic = isStatic;
 }
 
 void SpriteComponent::SetDestinationRectPosition(int x, int y)
@@ -62,8 +73,11 @@ void SpriteComponent::Initialize()
 
 void SpriteComponent::Update(float deltaTime)
 {
-	m_DestinationRect.x = (int)(GetGameObject()->GetPosition().x);
-	m_DestinationRect.y = (int)(GetGameObject()->GetPosition().y);
+	if (!m_IsStatic)
+	{
+		m_DestinationRect.x = (int)(GetGameObject()->GetPosition().x);
+		m_DestinationRect.y = (int)(GetGameObject()->GetPosition().y);
+	}
 
 	m_AccumulatedTime += deltaTime;
 	if (m_AccumulatedTime >= m_FrameTime)

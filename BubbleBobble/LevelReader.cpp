@@ -66,6 +66,11 @@ bool LevelReader::ReadLevels()
                         if (byte & m_LevelBitmask[j])
                         {
                             newLevel.AddTilePos(TilePos(column, row));
+                            //if (l == 0)
+                            //{
+                            //    //Debugging printing of Level 1
+                            //    std::cout << "Col/Row: " << column << "/" << row << "\n";
+                            //}
                             #ifdef PRINT_LEVELS
                             wprintf(L"\x2588");
                             //std::cout << "X";
@@ -86,6 +91,7 @@ bool LevelReader::ReadLevels()
                 //std::cout << "\n";
                 #endif // PRINT_LEVELS
                 ++row;
+                column = 0;
             }
             m_Levels.push_back(newLevel);
             #ifdef PRINT_LEVELS
