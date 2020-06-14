@@ -54,17 +54,36 @@ void BoxCollider2D::Update(float deltaTime)
 						dae1::Rectf dynamicRectf = pBox->GetDAERect();
 						Utils::SetColor(dae1::Color4f(1, 0, 0, 1));//Red
 						Utils::DrawRect(dynamicRectf);
+
+						dae1::Rectf staticRectf = GetDAERect();
 						Utils::SetColor(dae1::Color4f(0, 1, 0, 1));//Green
 						Utils::DrawRect(GetDAERect());
-						if (Utils::IsOverlapping(dynamicRectf, GetDAERect()))
+						if (Utils::IsOverlapping(dynamicRectf, staticRectf))
 						{
-							//HorizontalRay
-							dae1::Point2f leftMiddle = dae1::Point2f(dynamicRectf.left, dynamicRectf.bottom + (dynamicRectf.height * 0.5f));
-							dae1::Point2f rightMiddle = dae1::Point2f(dynamicRectf.left + dynamicRectf.width, dynamicRectf.bottom + (dynamicRectf.height * 0.5f));
-							Utils::HitInfo hitInfo{};
-							Utils::Raycast(GetDAERectCornerPoints(), leftMiddle, rightMiddle, hitInfo);
+							//TopCollision
+							if (dynamicRectf.bottom > (staticRectf.bottom + staticRectf.height))
+							{
+								float yOffset = (staticRectf.bottom + staticRectf.height) - dynamicRectf.bottom;
 
-							//VerticalRay
+								sGameObject->SetPosition(pos.x, pos.y - yOffset);
+							}
+
+							//LeftCollision
+							if ((dynamicRectf.left + dynamicRectf.width) > (staticRectf.left))
+							{
+								float xOffset = (dynamicRectf.left + dynamicRectf.width) - staticRectf.left;
+
+								sGameObject->SetPosition(pos.x - xOffset, pos.y);
+							}
+
+							//RightCollision
+							if ((dynamicRectf.left) < (staticRectf.left + staticRectf.width))
+							{
+								float xOffset = (staticRectf.left + staticRectf.width) - dynamicRectf.left;
+
+								sGameObject->SetPosition(pos.x + xOffset, pos.y);
+							}
+
 						}
 
 					}

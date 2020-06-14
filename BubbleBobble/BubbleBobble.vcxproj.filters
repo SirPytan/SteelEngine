@@ -11,6 +11,9 @@
     <Filter Include="Base">
       <UniqueIdentifier>{1568402f-c660-426c-991a-f8fa275e0d72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{485f2cfa-0b12-4e29-8b41-1e63a855b999}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelReader.h">

@@ -19,6 +19,7 @@ public:
 	BoxCollider2D& operator=(BoxCollider2D&& other) noexcept = delete;
 	~BoxCollider2D() override;
 
+	void UpdatePosition(int x, int y) { m_Rect.x = x; m_Rect.y = y; }
 	SDL_Rect GetSDLRect() const { return m_Rect; }
 	dae1::Rectf GetDAERect() const { return dae1::Rectf((float)m_Rect.x, (float)(m_Rect.y + m_Rect.h), (float)m_Rect.w, (float)m_Rect.h); }
 	std::vector<dae1::Point2f> GetDAERectCornerPoints() const;
