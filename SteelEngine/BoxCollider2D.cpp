@@ -33,6 +33,9 @@ void BoxCollider2D::Initialize()
 void BoxCollider2D::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
+	
+	if (m_DynamicGameObjects.empty())
+		return;
 
 	for (std::weak_ptr<GameObject> wGameObject : m_DynamicGameObjects)
 	{

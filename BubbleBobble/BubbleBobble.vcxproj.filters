@@ -22,14 +22,14 @@
     <ClInclude Include="BubbleBobbleGame.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="Headers.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyData.h">
       <Filter>LevelReader</Filter>
     </ClInclude>
     <ClInclude Include="LevelData.h">
       <Filter>LevelReader</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="EnemyData.cpp">
       <Filter>LevelReader</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

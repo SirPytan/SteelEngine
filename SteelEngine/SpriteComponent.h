@@ -31,6 +31,7 @@ public:
 	void SetDestinationRectPosition(int x, int y);
 	unsigned int GetRow() { return m_Row; }
 	unsigned int GetColumn() { return m_Column; }
+	SDL_Rect GetDestinationRect() const { return m_DestinationRect; }
 
 protected:
 	void Initialize() override;

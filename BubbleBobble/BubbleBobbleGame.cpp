@@ -13,6 +13,7 @@
 #include "InputTestComponent.h"
 #include "SpriteComponent.h"
 #include "LevelReader.h"
+#include "BoxCollider2D.h"
 
 BubbleBobbleGame::BubbleBobbleGame()
 	: SteelEngineGame("BubbleBobble - by 2DAE02_Patyk_Daniel - Prog4")
@@ -32,9 +33,24 @@ void BubbleBobbleGame::Initialize()
 	go->AddComponent(pInputTest);
 	pScene->Add(go);
 
-	//go = std::make_shared<GameObject>();
-	//go->SetTexture("background.jpg");
-	//pScene->Add(go);
+	//Player--------------------------------------------------------------------------------------
+	//Sprites0
+
+	auto player = std::make_shared<GameObject>();
+	player->SetPosition(200, 180);
+	SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 1);
+	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
+	pSprite->SetDestinationRectPosition((int)player->GetPosition().x, (int)player->GetPosition().y);
+	player->AddComponent(pSprite);
+
+	BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(std::vector<std::weak_ptr<GameObject>>(), pSprite->GetDestinationRect(), false);
+	player->AddComponent(pPlayerBoxCollider);
+
+	pScene->Add(player);
+	//--------------------------------------------------------------------------------------------
+
+	std::vector<std::weak_ptr<GameObject>> dynamicObject{};
+	dynamicObject.push_back(player);
 
 	auto level = std::make_shared<GameObject>();
 	auto texture = ResourceManager::GetInstance().LoadTexture("BigTiles.png");
@@ -43,25 +59,14 @@ void BubbleBobbleGame::Initialize()
 		SpriteComponent* pSprite = new SpriteComponent(texture, 10, 10, 1, 1);
 		pSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
 		pSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
+		BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pSprite->GetDestinationRect());
 		level->AddComponent(pSprite);
+		level->AddComponent(pBoxCollider);
 	}
 	pScene->Add(level);
 
 
-	//go = std::make_shared<GameObject>();
-	//go->SetTexture("logo.png");
-	//go->SetPosition(216, 180);
-	//pScene->Add(go);
 
-
-	//Sprites0
-	go = std::make_shared<GameObject>();
-	go->SetPosition(200, 180);
-	SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 1);
-	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
-	pSprite->SetDestinationRectPosition((int)go->GetPosition().x, (int)go->GetPosition().y);
-	go->AddComponent(pSprite);
-	pScene->Add(go);
 
 	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	//auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);

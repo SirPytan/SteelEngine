@@ -8,7 +8,6 @@
   GameObject.cpp
   InputManager.cpp
   InputTestComponent.cpp
-  Player.cpp
   SpriteComponent.cpp
   SteelEngineGame.cpp
   Renderer.cpp
@@ -19,9 +18,9 @@
   TextObject.cpp
   TextRenderComponent.cpp
   Texture2D.cpp
+  Transform.cpp
   Generating Code...
   Compiling...
-  Transform.cpp
   Utils.cpp
   Vector2f.cpp
   Generating Code...

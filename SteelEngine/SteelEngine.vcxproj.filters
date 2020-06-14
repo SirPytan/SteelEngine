@@ -38,6 +38,9 @@
     <Filter Include="DAE First Semester Framework files">
       <UniqueIdentifier>{7fdf9639-ad79-49a5-a0e6-40b9df03aa93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StateMachine">
+      <UniqueIdentifier>{5a810eab-6040-4e2e-b821-135fa492ca19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSComponent.h">
@@ -89,9 +92,6 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="TextObject.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSScript.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="SteelEngineGame.h">
@@ -157,13 +157,16 @@
     <ClInclude Include="Structs.h">
       <Filter>DAE First Semester Framework files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Command.h">
       <Filter>InputManager</Filter>
     </ClInclude>
     <ClInclude Include="BoxCollider2D.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="FPSScript.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -208,9 +211,6 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="FPSScript.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
     <ClCompile Include="SteelEngineGame.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -232,9 +232,12 @@
     <ClCompile Include="Structs.cpp">
       <Filter>DAE First Semester Framework files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="BoxCollider2D.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="FPSScript.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp" />
   </ItemGroup>
 </Project>
