@@ -1,2 +1,0 @@
-D:\_Prog4\SteelEngine\x64\Debug\SteelEngine.pdb
-D:\_Prog4\SteelEngine\SteelEngine\x64\Debug\SteelEngine.pdb

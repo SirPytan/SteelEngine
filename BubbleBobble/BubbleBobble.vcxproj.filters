@@ -14,6 +14,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{485f2cfa-0b12-4e29-8b41-1e63a855b999}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StateMachine">
+      <UniqueIdentifier>{00a5ab49-07cc-46d7-8cf5-62994757d8c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LevelReader.h">
@@ -31,6 +34,9 @@
     <ClInclude Include="PlayerController.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LevelReader.cpp">
@@ -47,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="PlayerController.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="States.cpp">
+      <Filter>StateMachine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

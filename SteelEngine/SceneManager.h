@@ -2,6 +2,7 @@
 #ifndef SCENE_MANAGER
 #define SCENE_MANAGER
 #include "Singleton.h"
+#include <vector>
 
 namespace dae
 {

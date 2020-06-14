@@ -166,7 +166,9 @@
     <ClInclude Include="FPSScript.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="State.h" />
+    <ClInclude Include="State.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -238,6 +240,8 @@
     <ClCompile Include="FPSScript.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp" />
+    <ClCompile Include="State.cpp">
+      <Filter>StateMachine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

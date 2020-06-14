@@ -8,7 +8,8 @@
 #include <glm/vec3.hpp>
 #pragma warning(pop)
 #include <string>
-
+#include <memory>
+#include <vector>
 
 namespace dae
 {
@@ -49,7 +50,7 @@ namespace dae
 		}
 
 	private:
-		Transform m_Transform;
+		Transform m_Transform{};
 		std::shared_ptr<Texture2D> m_pTexture{};
 
 		std::vector<BaseComponent*> m_pComponents;

@@ -170,6 +170,7 @@
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="States.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BubbleBobbleGame.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="States.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SteelEngine\SteelEngine.vcxproj">

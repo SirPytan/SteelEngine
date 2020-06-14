@@ -10,6 +10,12 @@ enum class PlayerNumber : int
 	P2 = 1
 };
 
+enum class PlayerDirection : int
+{
+	Left = 0,
+	Right = 1
+};
+
 class PlayerController : public dae::BaseComponent
 {
 public:
@@ -19,6 +25,9 @@ public:
 	PlayerController& operator=(const PlayerController& other) = delete;
 	PlayerController& operator=(PlayerController&& other) noexcept = delete;
 	~PlayerController() override;
+
+	int GetControllerId() const { return m_ControllerId; }
+	float GetWalkSpeed() const { return m_WalkSpeed; }
 
 protected:
 	void Initialize() override;
@@ -30,5 +39,7 @@ private:
 	int m_ControllerId{};
 	PlayerNumber m_PlayerNumber = PlayerNumber::P1;
 	State* m_pActivState = nullptr;
+	PlayerDirection m_PlayerDirection = PlayerDirection::Right;
+	const float m_WalkSpeed = 10.0f;
 };
 

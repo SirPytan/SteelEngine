@@ -1,6 +1,6 @@
 #pragma once
+#include "SteelEnginePCH.h"
 #include "GameObject.h"
-#include <memory>
 
 class State
 {
@@ -14,16 +14,3 @@ protected:
 	dae::GameObject* m_pGameObject = nullptr;
 };
 
-//class StandingState : public State
-//{
-//public:
-//	StandingState(dae::GameObject* pGameObject);
-//	~StandingState() override;
-//	void Enter() override;
-//	State* Update(float deltaTime) override;
-//	void Exit() override;
-//
-//
-//private:
-//
-//};

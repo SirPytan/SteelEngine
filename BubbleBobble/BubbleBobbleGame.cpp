@@ -56,11 +56,11 @@ void BubbleBobbleGame::Initialize()
 	auto texture = ResourceManager::GetInstance().LoadTexture("BigTiles.png");
 	for (TilePos tile : levelReader.GetLevel(0).GetTilePositions())
 	{
-		SpriteComponent* pSprite = new SpriteComponent(texture, 10, 10, 1, 1);
-		pSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
-		pSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
-		BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pSprite->GetDestinationRect());
-		level->AddComponent(pSprite);
+		SpriteComponent* pLevelSprite = new SpriteComponent(texture, 10, 10, 1, 1);
+		pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
+		pLevelSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
+		BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pLevelSprite->GetDestinationRect());
+		level->AddComponent(pLevelSprite);
 		level->AddComponent(pBoxCollider);
 	}
 	pScene->Add(level);

@@ -1,9 +1,0 @@
-﻿  BubbleBobbleGame.cpp
-  EnemyData.cpp
-  LevelReader.cpp
-  main.cpp
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 852 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  BubbleBobble.vcxproj -> D:\_Prog4\SteelEngine\Release\BubbleBobble.exe
