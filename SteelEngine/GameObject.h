@@ -1,4 +1,5 @@
 #pragma once
+#include "EMath.h"
 #include "Transform.h"
 #include "SceneObject.h"
 #include "BaseComponent.h"
@@ -6,6 +7,7 @@
 #pragma warning (disable:4201)
 #include <glm/vec3.hpp>
 #pragma warning(pop)
+#include <string>
 
 
 namespace dae
@@ -21,7 +23,8 @@ namespace dae
 
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
-		Vector2 GetPosition();
+		Elite::FVector3 GetPosition();
+		Elite::FVector2 GetPosition2D();
 
 		void AddComponent(BaseComponent* pComp);
 		void RemoveComponent(BaseComponent* pComp);

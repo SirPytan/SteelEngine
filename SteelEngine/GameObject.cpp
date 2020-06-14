@@ -53,12 +53,14 @@ void dae::GameObject::SetPosition(float x, float y)
 	m_Transform.SetPosition(x, y, 0.0f);
 }
 
-dae::Vector2 dae::GameObject::GetPosition()
+Elite::FVector3 dae::GameObject::GetPosition()
 {
-	Vector2 pos{};
-	pos.x = m_Transform.GetPosition().x;
-	pos.y = m_Transform.GetPosition().y;
-	return pos;
+	return m_Transform.GetElitePosition();
+}
+
+Elite::FVector2 dae::GameObject::GetPosition2D()
+{
+	return m_Transform.GetElitePosition2D();
 }
 
 void dae::GameObject::AddComponent(BaseComponent* pComp)

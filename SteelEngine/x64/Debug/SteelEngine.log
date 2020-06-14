@@ -1,12 +1,14 @@
 ﻿  SteelEnginePCH.cpp
   BaseComponent.cpp
   BinaryReader.cpp
+  BoxCollider2D.cpp
   Font.cpp
   FPSComponent.cpp
   FPSScript.cpp
   GameObject.cpp
   InputManager.cpp
   InputTestComponent.cpp
+  Player.cpp
   SpriteComponent.cpp
   SteelEngineGame.cpp
   Renderer.cpp
@@ -17,10 +19,10 @@
   TextObject.cpp
   TextRenderComponent.cpp
   Texture2D.cpp
-  Transform.cpp
-  Utils.cpp
   Generating Code...
   Compiling...
+  Transform.cpp
+  Utils.cpp
   Vector2f.cpp
   Generating Code...
 Scene.obj : warning LNK4006: "private: static unsigned int dae::Scene::m_IdCounter" (?m_IdCounter@Scene@dae@@0IA) already defined in SceneManager.obj; second definition ignored

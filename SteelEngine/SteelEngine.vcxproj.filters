@@ -161,7 +161,9 @@
     <ClInclude Include="Command.h">
       <Filter>InputManager</Filter>
     </ClInclude>
-    <ClInclude Include="BoxCollider2D.h" />
+    <ClInclude Include="BoxCollider2D.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -231,6 +233,8 @@
       <Filter>DAE First Semester Framework files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="BoxCollider2D.cpp" />
+    <ClCompile Include="BoxCollider2D.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

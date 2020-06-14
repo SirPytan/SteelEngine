@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SCENE
+#define SCENE
+
 #include "SceneManager.h"
 
 namespace dae
@@ -10,6 +13,7 @@ namespace dae
 	public:
 		void Add(const std::shared_ptr<SceneObject>& object);
 		std::string GetName() const { return m_Name; }
+		std::vector<std::shared_ptr<SceneObject>> GetSceneObjects() const { return m_Objects; }
 
 		void Initialize();
 		void Update(float deltaTime);
@@ -25,9 +29,10 @@ namespace dae
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
-		std::vector < std::shared_ptr<SceneObject>> m_Objects{};
+		std::vector<std::shared_ptr<SceneObject>> m_Objects{};
 
 		static unsigned int m_IdCounter; 
 	};
 
 }
+#endif

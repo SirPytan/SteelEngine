@@ -1,4 +1,6 @@
 #pragma once
+#ifndef SCENE_MANAGER
+#define SCENE_MANAGER
 #include "Singleton.h"
 
 namespace dae
@@ -12,6 +14,7 @@ namespace dae
 		void SetActivScene(const std::string& sceneName);
 		void SetActivScene(Scene* pScene);
 		Scene* GetSceneByName(const std::string& sceneName) const;
+		Scene* GetActivScene() const { return m_pActivScene; }
 
 		void Initialize();
 		void Update(float deltaTime);
@@ -24,3 +27,4 @@ namespace dae
 		std::vector<Scene*> m_pScenes{};
 	};
 }
+#endif

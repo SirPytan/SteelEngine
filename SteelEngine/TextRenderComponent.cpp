@@ -57,7 +57,7 @@ void TextRenderComponent::Render()
 {
 	if (m_Texture != nullptr)
 	{
-		dae::Vector2 pos = m_pGameObject->GetPosition();
+		Elite::FVector2 pos = m_pGameObject->GetPosition2D();
 		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 	}
 }
