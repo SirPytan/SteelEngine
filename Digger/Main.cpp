@@ -1,13 +1,13 @@
 #include "SteelEnginePCH.h"
-#include "BubbleBobbleGame.h"
+#include "DiggerGame.h"
 
 #if _DEBUG
 //// ReSharper disable once CppUnusedIncludeDirective
-//#include <vld.h>
+#include <vld.h>
 #endif
 
 int main()
 {
-	BubbleBobbleGame bubbleBobble;
-	bubbleBobble.Run();
+	DiggerGame digger;
+	digger.Run();
 }

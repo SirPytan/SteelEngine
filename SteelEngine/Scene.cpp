@@ -23,6 +23,11 @@ void dae::Scene::Initialize()
 	}
 }
 
+void dae::Scene::FixedUpdate()
+{
+	//Is not in use yet
+}
+
 void Scene::Update(float deltaTime)
 {
 	for(auto& object : m_Objects)

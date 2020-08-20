@@ -23,11 +23,10 @@ SteelEngineGame::~SteelEngineGame()
 
 void SteelEngineGame::Run()
 {
+	srand(unsigned int(time(nullptr)));
 	InitializeWindow(m_GameName, 640, 480);
-
 	// tell the resource manager where he can find the game data
 	ResourceManager::GetInstance().Init("../Data/");
-
 	InitializeGame();
 
 	auto& renderer = Renderer::GetInstance();
@@ -46,17 +45,13 @@ void SteelEngineGame::Run()
 		float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 		lastTime = currentTime;
 		lag += deltaTime;
-
 		doContinue = input.ProcessInput();
-
-		//Normal Update?
-
 		while (lag >= secondsPerUpdate)
 		{
-			//FixedUpdate?
-			sceneManager.Update(deltaTime);
+			sceneManager.FixedUpdate();
 			lag -= secondsPerUpdate;
 		}
+		sceneManager.Update(deltaTime);
 		renderer.Render();
 	}
 
@@ -70,7 +65,8 @@ void SteelEngineGame::InitializeWindow(std::string windowTitle, int winWidth, in
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
-	m_Window = SDL_CreateWindow(
+	m_Window = SDL_CreateWindow
+	(
 		windowTitle.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
@@ -78,6 +74,7 @@ void SteelEngineGame::InitializeWindow(std::string windowTitle, int winWidth, in
 		winHeight,
 		SDL_WINDOW_OPENGL
 	);
+
 	if (m_Window == nullptr)
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());

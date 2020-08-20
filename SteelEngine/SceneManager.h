@@ -18,6 +18,7 @@ namespace dae
 		Scene* GetActivScene() const { return m_pActivScene; }
 
 		void Initialize();
+		void FixedUpdate();
 		void Update(float deltaTime);
 		void Render();
 		void Cleanup();

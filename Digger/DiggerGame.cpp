@@ -1,5 +1,5 @@
 #include "SteelEnginePCH.h"
-#include "BubbleBobbleGame.h"
+#include "DiggerGame.h"
 
 #include "SceneManager.h"
 #include "ResourceManager.h"
@@ -15,12 +15,12 @@
 #include "LevelReader.h"
 #include "BoxCollider2D.h"
 
-BubbleBobbleGame::BubbleBobbleGame()
-	: SteelEngineGame("BubbleBobble - by 2DAE02_Patyk_Daniel - Prog4")
+DiggerGame::DiggerGame()
+	: SteelEngineGame("Digger - by 2DAE02_Patyk_Daniel - Prog4")
 {
 }
 
-void BubbleBobbleGame::Initialize()
+void DiggerGame::Initialize()
 {
 	LevelReader levelReader{};
 	levelReader.ReadLevels();

@@ -15,21 +15,18 @@ void dae::SceneManager::Initialize()
 	}
 }
 
+void dae::SceneManager::FixedUpdate()
+{
+	m_pActivScene->FixedUpdate();
+}
+
 void dae::SceneManager::Update(float deltaTime)
 {
-	//for(auto& scene : m_Scenes)
-	//{
-	//	scene->Update(deltaTime);
-	//}
 	m_pActivScene->Update(deltaTime);
 }
 
 void dae::SceneManager::Render()
 {
-	//for (const auto& scene : m_Scenes)
-	//{
-	//	scene->Render();
-	//}
 	m_pActivScene->Render();
 }
 

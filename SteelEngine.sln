@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SteelEngine", "SteelEngine\SteelEngine.vcxproj", "{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BubbleBobble", "BubbleBobble\BubbleBobble.vcxproj", "{1E3B2080-7C32-441C-826A-7C31E682E51A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Digger", "Digger\Digger.vcxproj", "{1E3B2080-7C32-441C-826A-7C31E682E51A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
