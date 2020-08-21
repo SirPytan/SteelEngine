@@ -32,14 +32,17 @@
     <Filter Include="Math">
       <UniqueIdentifier>{df5fd116-2d16-4b5f-a6bc-290cac7431b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BinaryReader">
-      <UniqueIdentifier>{c365b0bc-b578-4cd9-bf75-76b56fd78379}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DAE First Semester Framework files">
       <UniqueIdentifier>{7fdf9639-ad79-49a5-a0e6-40b9df03aa93}</UniqueIdentifier>
     </Filter>
     <Filter Include="StateMachine">
       <UniqueIdentifier>{5a810eab-6040-4e2e-b821-135fa492ca19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileReader">
+      <UniqueIdentifier>{03b2be33-2628-4483-81c3-ccb22b1c40db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Observer">
+      <UniqueIdentifier>{b20fb2ec-3c8c-4f82-aa1f-04f2072fc5b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -145,9 +148,6 @@
     <ClInclude Include="SpriteComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryReader.h">
-      <Filter>BinaryReader</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2f.h">
       <Filter>DAE First Semester Framework files</Filter>
     </ClInclude>
@@ -168,6 +168,18 @@
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryReader.h">
+      <Filter>FileReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -222,9 +234,6 @@
     <ClCompile Include="SpriteComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryReader.cpp">
-      <Filter>BinaryReader</Filter>
-    </ClCompile>
     <ClCompile Include="Vector2f.cpp">
       <Filter>DAE First Semester Framework files</Filter>
     </ClCompile>
@@ -242,6 +251,12 @@
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryReader.cpp">
+      <Filter>FileReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Observer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

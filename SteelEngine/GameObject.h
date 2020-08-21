@@ -15,7 +15,7 @@ namespace dae
 {
 	class BaseComponent;
 	class Texture2D;
-	class GameObject final : public SceneObject
+	class GameObject : public SceneObject
 	{
 	public:
 		void Initialize() override;

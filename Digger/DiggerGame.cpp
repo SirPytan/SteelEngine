@@ -24,7 +24,6 @@ void DiggerGame::Initialize()
 {
 	LevelReader levelReader{};
 	levelReader.ReadLevels();
-	levelReader.ReadEnemies();
 
 	Scene* pScene = SceneManager::GetInstance().CreateScene("Game");
 

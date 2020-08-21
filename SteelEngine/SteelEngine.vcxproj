@@ -222,6 +222,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="EMatrix2.h" />
     <ClInclude Include="EMatrix3.h" />
     <ClInclude Include="EMatrix4.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="EPoint.h" />
     <ClInclude Include="EPoint2.h" />
     <ClInclude Include="EPoint3.h" />
@@ -237,6 +238,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputTestComponent.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="SteelEngineGame.h" />
@@ -248,6 +250,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Structs.h" />
+    <ClInclude Include="Subject.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="TextRenderComponent.h" />
     <ClInclude Include="Texture2D.h" />
@@ -280,6 +283,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Structs.cpp" />
+    <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TextRenderComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />
