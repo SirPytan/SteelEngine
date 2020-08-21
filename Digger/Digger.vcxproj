@@ -167,17 +167,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DiggerGame.cpp" />
-    <ClCompile Include="EnemyData.cpp" />
-    <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="States.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DiggerGame.h" />
-    <ClInclude Include="EnemyData.h" />
-    <ClInclude Include="LevelData.h" />
-    <ClInclude Include="LevelReader.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="States.h" />
   </ItemGroup>

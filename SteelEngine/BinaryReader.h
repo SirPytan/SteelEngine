@@ -24,11 +24,7 @@ public:
 	bool CloseFile();
 	
 
-	//void ReadBinaryOBJFileToClass(const std::string& filename, OBJ& obj);
-
 private:
-	//int ReadNumberOfElements(std::ifstream& inputStream);
-
 	std::string m_Filepath;
 	std::ifstream m_Filestream;
 };

@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="LevelReader">
       <UniqueIdentifier>{f94a7406-2ac9-4167-8e87-07ff249ccd1d}</UniqueIdentifier>
     </Filter>
@@ -19,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LevelReader.h">
-      <Filter>LevelReader</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyData.h">
-      <Filter>LevelReader</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelData.h">
-      <Filter>LevelReader</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -39,14 +26,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LevelReader.cpp">
-      <Filter>LevelReader</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyData.cpp">
-      <Filter>LevelReader</Filter>
     </ClCompile>
     <ClCompile Include="PlayerController.cpp">
       <Filter>Components</Filter>
