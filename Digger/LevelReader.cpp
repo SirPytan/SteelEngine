@@ -37,13 +37,13 @@ bool LevelReader::ReadLevels()
 				
 				if (std::regex_search(line, matches, regexLevelNo))
 				{
-					if (matches[0].str() == "LV")
+					if (matches[1].str() == "LV")
 					{
 						if (level != nullptr)
 						{
 							m_Levels.push_back(*level);
 						}
-						level = new LevelData(std::stoi(matches[1].str()));
+						level = new LevelData(std::stoi(matches[2].str()));
 						row = 0;
 						column = 0;
 					}
@@ -55,29 +55,30 @@ bool LevelReader::ReadLevels()
 						switch (c)
 						{
 						case 'P':
-							level->AddTilePos(Tile(column, row, TileType::PlayerSpawn));
+							level->AddTilePos(column, row, TileType::PlayerSpawn);
 							break;
 						case 'S':
-							level->AddTilePos(Tile(column, row, TileType::EnemySpawn));
+							level->AddTilePos(column, row, TileType::EnemySpawn);
 							break;
 						case 'H':
-							level->AddTilePos(Tile(column, row, TileType::H_Tunnel));
+							level->AddTilePos(column, row, TileType::H_Tunnel);
 							break;
 						case 'V':
-							level->AddTilePos(Tile(column, row, TileType::V_Tunnel));
+							level->AddTilePos(column, row, TileType::V_Tunnel);
 							break;
 						case 'B':
-							level->AddTilePos(Tile(column, row, TileType::MoneyBag));
+							level->AddTilePos(column, row, TileType::MoneyBag);
 							break;
 						case 'C':
-							level->AddTilePos(Tile(column, row, TileType::Emerald));
+							level->AddTilePos(column, row, TileType::Emerald);
 							break;
-						case ' ':
-							level->AddTilePos(Tile(column, row, TileType::Wall));
+						case '#':
+							level->AddTilePos(column, row, TileType::Wall);
 							break;
 						}
 						column++;
 					}
+					column = 0;
 					row++;
 				}
 			}

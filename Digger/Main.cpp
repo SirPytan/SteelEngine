@@ -9,5 +9,5 @@
 int main()
 {
 	DiggerGame digger;
-	digger.Run();
+	digger.Run(600, 480);
 }

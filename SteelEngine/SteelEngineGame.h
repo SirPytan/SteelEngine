@@ -13,7 +13,7 @@ public:
 	SteelEngineGame(std::string gameName);
 	virtual ~SteelEngineGame();
 
-	void Run();
+	void Run(unsigned int windowWidth, unsigned int windowHeight);
 
 protected:
 	virtual void Initialize() = 0;

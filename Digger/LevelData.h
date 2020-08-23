@@ -33,6 +33,6 @@ public:
 
 private:
 	unsigned int m_LevelNumber{};
-	std::vector<Tile> m_TilePositions;
+	std::vector<Tile> m_TilePositions{};
 };
 

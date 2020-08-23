@@ -53,7 +53,7 @@ bool SteelEngine::InputManager::ProcessInput()
 		}
 	}
 
-	m_pKeyboardState = SDL_GetKeyboardState(nullptr);
+	//const Uint8* pKeyboardState = SDL_GetKeyboardState(nullptr);
 
 	for (std::map<ControllerButton, Command*>::const_iterator it = m_Commands.cbegin(); it != m_Commands.cend(); ++it)
 	{

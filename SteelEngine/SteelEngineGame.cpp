@@ -21,10 +21,10 @@ SteelEngineGame::SteelEngineGame(std::string gameName)
 SteelEngineGame::~SteelEngineGame()
 {}
 
-void SteelEngineGame::Run()
+void SteelEngineGame::Run(unsigned int windowWidth, unsigned int windowHeight)
 {
 	srand(unsigned int(time(nullptr)));
-	InitializeWindow(m_GameName, 640, 480);
+	InitializeWindow(m_GameName, windowWidth, windowHeight);
 	// tell the resource manager where he can find the game data
 	ResourceManager::GetInstance().Init("../Data/");
 	InitializeGame();

@@ -22,8 +22,8 @@ DiggerGame::DiggerGame()
 
 void DiggerGame::Initialize()
 {
-	//LevelReader levelReader{"Levels2.txt"};
-	//levelReader.ReadLevels();
+	LevelReader levelReader{"Levels2.txt"};
+	levelReader.ReadLevels();
 
 	Scene* pScene = SceneManager::GetInstance().CreateScene("Game");
 
@@ -50,21 +50,62 @@ void DiggerGame::Initialize()
 
 	std::vector<std::weak_ptr<GameObject>> dynamicObject{};
 	//dynamicObject.push_back(player);
+	int level = 3;
+	int playerSpawnX{};
+	int playerSpawnY{};
+	int enemySpawnX{};
+	int enemySpawnY{};
+	int tileSize = 40;
 
-	//auto level = std::make_shared<GameObject>();
-	//auto texture = ResourceManager::GetInstance().LoadTexture("BigTiles.png");
-	//for (Tile tile : levelReader.GetLevel(0).GetTilePositions())
-	//{
-	//	SpriteComponent* pLevelSprite = new SpriteComponent(texture, 10, 10, 1, 1);
-	//	pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
-	//	pLevelSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
-	//	BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pLevelSprite->GetDestinationRect());
-	//	level->AddComponent(pLevelSprite);
-	//	level->AddComponent(pBoxCollider);
-	//}
-	//pScene->Add(level);
+	auto levelObject = std::make_shared<GameObject>();
+	auto texture = ResourceManager::GetInstance().LoadTexture("Spritesheet.png");
+	for (Tile tile : levelReader.GetLevel(level-1).GetTilePositions())
+	{
+		SpriteComponent* pLevelSprite = new SpriteComponent(texture, 8, 8, 1, 1);
+		switch (tile.type)
+		{
+		case TileType::Wall:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, level, 1, true);
+			break;
+		case TileType::H_Tunnel:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 5, 5, true);
+			break;
+		case TileType::V_Tunnel:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 5, 5, true);
+			break;
+		case TileType::MoneyBag:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, level, 3, true);
+			break;
+		case TileType::Emerald:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, level, 2, true);
+			break;
+		case TileType::PlayerSpawn:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 5, 5, true);
+			playerSpawnX = tile.x * tileSize;
+			playerSpawnY = tile.y * tileSize;
+			break;
+		case TileType::EnemySpawn:
+			pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 5, 5, true);
+			enemySpawnX = tile.x * tileSize;
+			enemySpawnY = tile.y * tileSize;
+			break;
+		}
+		pLevelSprite->SetDestinationRectPosition(tile.x * tileSize, tile.y * tileSize);
+		//BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pLevelSprite->GetDestinationRect());
+		levelObject->AddComponent(pLevelSprite);
+		//level->AddComponent(pBoxCollider);
+	}
+	pScene->Add(levelObject);
 
-
+	auto bottomborder = std::make_shared<GameObject>();
+	for (int i{}; i < 15; i++)
+	{
+		SpriteComponent* pBorderSprite = new SpriteComponent(texture, 8, 8, 1, 1);
+		pBorderSprite->SetAnimationParameters(AnimationType::OneFrame, 8, 8, true);
+		pBorderSprite->SetDestinationRectPosition(i * tileSize, 10 * tileSize);
+		bottomborder->AddComponent(pBorderSprite);
+	}
+	pScene->Add(bottomborder);
 
 
 	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);

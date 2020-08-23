@@ -63,8 +63,6 @@ namespace SteelEngine
 		//Bool indicates if a controller is connected or not
 		 std::pair<bool, XINPUT_STATE> m_XInputStates[4]{};
 		 std::map<ControllerButton, Command*> m_Commands;
-		 const Uint8* m_pKeyboardState = nullptr;
-
 	};
 
 }

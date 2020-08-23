@@ -45,7 +45,7 @@ State* StandingState::Update(float deltaTime)
 
         if (m_pPlayerController->GetInput()->shootFireball)
         {
-            return new ShootFireball(m_pGameObject);
+            return new ShootFireballState(m_pGameObject);
         }
     }
 
