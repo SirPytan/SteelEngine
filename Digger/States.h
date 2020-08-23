@@ -68,11 +68,11 @@ private:
 };
 
 
-class ShootFireball : public State
+class ShootFireballState : public State
 {
 public:
-	ShootFireball(dae::GameObject* pGameObject);
-	~ShootFireball() = default;
+	ShootFireballState(dae::GameObject* pGameObject);
+	~ShootFireballState() = default;
 	void Enter() override;
 	State* Update(float deltaTime) override;
 	void Exit() override;

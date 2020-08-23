@@ -1,6 +1,8 @@
 #include "PlayerController.h"
 #include "InputManager.h"
 #include <iostream>
+#include "Commands.h"
+#include "States.h"
 
 using namespace SteelEngine;
 
@@ -51,6 +53,15 @@ void PlayerController::Initialize()
 			std::cout << "There is no second controller connected\n";
 		}
 	}
+
+	//For the First Player
+	InputManager::GetInstance().AddCommand(new MoveLeft(m_ControllerId, GetGameObject()), SteelEngine::ControllerButton::DpadLeft);
+	InputManager::GetInstance().AddCommand(new MoveRight(m_ControllerId, GetGameObject()), SteelEngine::ControllerButton::DpadRight);
+	InputManager::GetInstance().AddCommand(new MoveUp(m_ControllerId, GetGameObject()), SteelEngine::ControllerButton::DpadUp);
+	InputManager::GetInstance().AddCommand(new MoveDown(m_ControllerId, GetGameObject()), SteelEngine::ControllerButton::DpadDown);
+	InputManager::GetInstance().AddCommand(new ShootFireball(m_ControllerId, GetGameObject()), SteelEngine::ControllerButton::A);
+
+	m_pActivState = new StandingState(GetGameObject());
 }
 
 void PlayerController::Update(float deltaTime)

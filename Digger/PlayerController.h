@@ -11,12 +11,6 @@ enum class PlayerNumber : int
 	P2 = 1
 };
 
-enum class PlayerDirection : int
-{
-	Left = 0,
-	Right = 1
-};
-
 class PlayerController : public dae::BaseComponent
 {
 public:
@@ -41,7 +35,6 @@ private:
 	int m_ControllerId{};
 	PlayerNumber m_PlayerNumber = PlayerNumber::P1;
 	State* m_pActivState = nullptr;
-	PlayerDirection m_PlayerDirection = PlayerDirection::Right;
 	const float m_WalkSpeed = 10.0f;
 	Input m_Input{};
 };

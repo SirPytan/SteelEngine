@@ -21,20 +21,34 @@ State* StandingState::Update(float deltaTime)
     UNREFERENCED_PARAMETER(deltaTime);
 
     //Use Commands
+    if (m_pPlayerController != nullptr)
+    {
+        if (m_pPlayerController->GetInput()->direction == Direction::Left)
+        {
+            return new GoLeftState(m_pGameObject);
+        }
 
-    if (InputManager::GetInstance().IsPressed(ControllerButton::DpadLeft, m_pPlayerController->GetControllerId()))
-    {
-        return new GoLeftState(m_pGameObject);
-    }
-    if (InputManager::GetInstance().IsPressed(ControllerButton::DpadRight, m_pPlayerController->GetControllerId()))
-    {
-        return new GoRightState(m_pGameObject);
+        if (m_pPlayerController->GetInput()->direction == Direction::Right)
+        {
+            return new GoRightState(m_pGameObject);
+        }
+
+        if (m_pPlayerController->GetInput()->direction == Direction::Up)
+        {
+            return new GoUpState(m_pGameObject);
+        }
+
+        if (m_pPlayerController->GetInput()->direction == Direction::Down)
+        {
+            return new GoDownState(m_pGameObject);
+        }
+
+        if (m_pPlayerController->GetInput()->shootFireball)
+        {
+            return new ShootFireball(m_pGameObject);
+        }
     }
 
-    if (InputManager::GetInstance().IsPressed(ControllerButton::X, m_pPlayerController->GetControllerId()))
-    {
-        return new ShootFireball(m_pGameObject);
-    }
     return nullptr;
 }
 
@@ -58,11 +72,12 @@ void GoLeftState::Enter()
 
 State* GoLeftState::Update(float deltaTime)
 {
-    if (InputManager::GetInstance().IsPressed(ControllerButton::DpadLeft, m_pPlayerController->GetControllerId()))
+    UNREFERENCED_PARAMETER(deltaTime);
+    if (m_pPlayerController->GetInput()->direction == Direction::Left)
     {
-        auto pos = m_pGameObject->GetPosition2D();
-        pos.x -= deltaTime * m_pPlayerController->GetWalkSpeed();
-        m_pGameObject->SetPosition(pos.x, pos.y);
+        //auto pos = m_pGameObject->GetPosition2D();
+        //pos.x -= deltaTime * m_pPlayerController->GetWalkSpeed();
+        //m_pGameObject->SetPosition(pos.x, pos.y);
         return nullptr;
     }
 
@@ -89,11 +104,12 @@ void GoRightState::Enter()
 
 State* GoRightState::Update(float deltaTime)
 {
-    if (InputManager::GetInstance().IsPressed(ControllerButton::DpadRight, m_pPlayerController->GetControllerId()))
+    UNREFERENCED_PARAMETER(deltaTime);
+    if (m_pPlayerController->GetInput()->direction == Direction::Right)
     {
-        auto pos = m_pGameObject->GetPosition2D();
-        pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
-        m_pGameObject->SetPosition(pos.x, pos.y);
+        //auto pos = m_pGameObject->GetPosition2D();
+        //pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
+        //m_pGameObject->SetPosition(pos.x, pos.y);
         return nullptr;
     }
 
@@ -104,25 +120,84 @@ void GoRightState::Exit()
 {
 }
 
+
 //-------------------------------------------------------------------
 
-ShootFireball::ShootFireball(dae::GameObject* pGameObject)
+GoDownState::GoDownState(dae::GameObject* pGameObject)
+    : State(pGameObject)
+{
+}
+
+void GoDownState::Enter()
+{
+}
+
+State* GoDownState::Update(float deltaTime)
+{
+    UNREFERENCED_PARAMETER(deltaTime);
+    if (m_pPlayerController->GetInput()->direction == Direction::Down)
+    {
+        //auto pos = m_pGameObject->GetPosition2D();
+        //pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
+        //m_pGameObject->SetPosition(pos.x, pos.y);
+        return nullptr;
+    }
+
+    return new StandingState(m_pGameObject);
+}
+
+void GoDownState::Exit()
+{
+}
+
+//-------------------------------------------------------------------
+
+GoUpState::GoUpState(dae::GameObject* pGameObject)
+    : State(pGameObject)
+{
+}
+
+void GoUpState::Enter()
+{
+}
+
+State* GoUpState::Update(float deltaTime)
+{
+    UNREFERENCED_PARAMETER(deltaTime);
+    if (m_pPlayerController->GetInput()->direction == Direction::Up)
+    {
+        //auto pos = m_pGameObject->GetPosition2D();
+        //pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
+        //m_pGameObject->SetPosition(pos.x, pos.y);
+        return nullptr;
+    }
+
+    return new StandingState(m_pGameObject);
+}
+
+void GoUpState::Exit()
+{
+}
+
+//-------------------------------------------------------------------
+
+ShootFireballState::ShootFireballState(dae::GameObject* pGameObject)
     : State(pGameObject)
 {
     m_pPlayerController = pGameObject->GetComponent<PlayerController>();
     m_pSprite = pGameObject->GetComponent<SpriteComponent>();
 }
 
-void ShootFireball::Enter()
+void ShootFireballState::Enter()
 {
 }
 
-State* ShootFireball::Update(float deltaTime)
+State* ShootFireballState::Update(float deltaTime)
 {
     UNREFERENCED_PARAMETER(deltaTime);
     return nullptr;
 }
 
-void ShootFireball::Exit()
+void ShootFireballState::Exit()
 {
 }
