@@ -2,8 +2,8 @@
 #include "BoxCollider2D.h"
 #include "Utils.h"
 
-BoxCollider2D::BoxCollider2D(std::vector<std::weak_ptr<GameObject>> dynamicGameObjects, SDL_Rect rect, bool isStatic)
-	: m_DynamicGameObjects{ dynamicGameObjects }
+BoxCollider2D::BoxCollider2D(std::vector<std::weak_ptr<GameObject>>* pDynamicGameObjects, SDL_Rect rect, bool isStatic)
+	: m_pDynamicGameObjects{ pDynamicGameObjects }
 	, m_Rect{ rect }
 	, m_IsStatic{ isStatic }
 {
@@ -34,10 +34,11 @@ void BoxCollider2D::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 	
-	if (m_DynamicGameObjects.empty())
+	if (m_pDynamicGameObjects->empty())
 		return;
+	m_IsOverlapping = false;
 
-	for (std::weak_ptr<GameObject> wGameObject : m_DynamicGameObjects)
+	for (std::weak_ptr<GameObject> wGameObject : *m_pDynamicGameObjects)
 	{
 		if (!wGameObject.expired())
 		{
@@ -63,32 +64,37 @@ void BoxCollider2D::Update(float deltaTime)
 						Utils::DrawRect(GetDAERect());
 						if (Utils::IsOverlapping(dynamicRectf, staticRectf))
 						{
-							//TopCollision
-							if (dynamicRectf.bottom > (staticRectf.bottom + staticRectf.height))
+							m_IsOverlapping = true;
+							auto it = std::find(m_pWeakOverlappingGameObjects.begin(), m_pWeakOverlappingGameObjects.end(), wGameObject);
+							if (it == m_pWeakOverlappingGameObjects.end())
 							{
-								float yOffset = (staticRectf.bottom + staticRectf.height) - dynamicRectf.bottom;
-
-								sGameObject->SetPosition(pos.x, pos.y - yOffset);
+								m_pWeakOverlappingGameObjects.push_back(wGameObject);
 							}
+							////TopCollision
+							//if (dynamicRectf.bottom > (staticRectf.bottom + staticRectf.height))
+							//{
+							//	float yOffset = (staticRectf.bottom + staticRectf.height) - dynamicRectf.bottom;
 
-							//LeftCollision
-							if ((dynamicRectf.left + dynamicRectf.width) > (staticRectf.left))
-							{
-								float xOffset = (dynamicRectf.left + dynamicRectf.width) - staticRectf.left;
+							//	sGameObject->SetPosition(pos.x, pos.y - yOffset);
+							//}
 
-								sGameObject->SetPosition(pos.x - xOffset, pos.y);
-							}
+							////LeftCollision
+							//if ((dynamicRectf.left + dynamicRectf.width) > (staticRectf.left))
+							//{
+							//	float xOffset = (dynamicRectf.left + dynamicRectf.width) - staticRectf.left;
 
-							//RightCollision
-							if ((dynamicRectf.left) < (staticRectf.left + staticRectf.width))
-							{
-								float xOffset = (staticRectf.left + staticRectf.width) - dynamicRectf.left;
+							//	sGameObject->SetPosition(pos.x - xOffset, pos.y);
+							//}
 
-								sGameObject->SetPosition(pos.x + xOffset, pos.y);
-							}
+							////RightCollision
+							//if ((dynamicRectf.left) < (staticRectf.left + staticRectf.width))
+							//{
+							//	float xOffset = (staticRectf.left + staticRectf.width) - dynamicRectf.left;
+
+							//	sGameObject->SetPosition(pos.x + xOffset, pos.y);
+							//}
 
 						}
-
 					}
 				}
 			}

@@ -33,6 +33,7 @@ public:
 	unsigned int GetColumn() { return m_Column; }
 	SDL_Rect GetDestinationRect() const { return m_DestinationRect; }
 
+
 protected:
 	void Initialize() override;
 	void Update(float deltaTime) override;
