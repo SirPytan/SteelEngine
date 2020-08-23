@@ -53,6 +53,7 @@ bool SteelEngine::InputManager::ProcessInput()
 		}
 	}
 
+	m_pKeyboardState = SDL_GetKeyboardState(nullptr);
 
 	for (std::map<ControllerButton, Command*>::const_iterator it = m_Commands.cbegin(); it != m_Commands.cend(); ++it)
 	{
@@ -69,22 +70,15 @@ bool SteelEngine::InputManager::ProcessInput()
 		{
 			return false;
 		}
-		if (e.type == SDL_KEYDOWN)
-		{
-			
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN)
-		{
-			
-		}
 	}
 
 	return true;
 }
 
 
-bool SteelEngine::InputManager::IsPressed(ControllerButton button,int controllerId) const
+bool SteelEngine::InputManager::IsPressed(ControllerButton button, int controllerId) const
 {
+
 	if (m_XInputStates[controllerId].first)
 	{
 		switch (button)

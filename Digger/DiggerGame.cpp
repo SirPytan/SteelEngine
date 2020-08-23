@@ -22,8 +22,8 @@ DiggerGame::DiggerGame()
 
 void DiggerGame::Initialize()
 {
-	LevelReader levelReader{};
-	levelReader.ReadLevels();
+	//LevelReader levelReader{"Levels2.txt"};
+	//levelReader.ReadLevels();
 
 	Scene* pScene = SceneManager::GetInstance().CreateScene("Game");
 
@@ -35,34 +35,34 @@ void DiggerGame::Initialize()
 	//Player--------------------------------------------------------------------------------------
 	//Sprites0
 
-	auto player = std::make_shared<GameObject>();
-	player->SetPosition(200, 180);
-	SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 1);
-	pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
-	pSprite->SetDestinationRectPosition((int)player->GetPosition().x, (int)player->GetPosition().y);
-	player->AddComponent(pSprite);
+	//auto player = std::make_shared<GameObject>();
+	//player->SetPosition(200, 180);
+	//SpriteComponent* pSprite = new SpriteComponent("Sprites0_slim.png", 8, 16, 8, 1);
+	//pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
+	//pSprite->SetDestinationRectPosition((int)player->GetPosition().x, (int)player->GetPosition().y);
+	//player->AddComponent(pSprite);
 
-	BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(std::vector<std::weak_ptr<GameObject>>(), pSprite->GetDestinationRect(), false);
-	player->AddComponent(pPlayerBoxCollider);
+	//BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(std::vector<std::weak_ptr<GameObject>>(), pSprite->GetDestinationRect(), false);
+	//player->AddComponent(pPlayerBoxCollider);
 
-	pScene->Add(player);
+	//pScene->Add(player);
 	//--------------------------------------------------------------------------------------------
 
 	std::vector<std::weak_ptr<GameObject>> dynamicObject{};
-	dynamicObject.push_back(player);
+	//dynamicObject.push_back(player);
 
-	auto level = std::make_shared<GameObject>();
-	auto texture = ResourceManager::GetInstance().LoadTexture("BigTiles.png");
-	for (TilePos tile : levelReader.GetLevel(0).GetTilePositions())
-	{
-		SpriteComponent* pLevelSprite = new SpriteComponent(texture, 10, 10, 1, 1);
-		pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
-		pLevelSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
-		BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pLevelSprite->GetDestinationRect());
-		level->AddComponent(pLevelSprite);
-		level->AddComponent(pBoxCollider);
-	}
-	pScene->Add(level);
+	//auto level = std::make_shared<GameObject>();
+	//auto texture = ResourceManager::GetInstance().LoadTexture("BigTiles.png");
+	//for (Tile tile : levelReader.GetLevel(0).GetTilePositions())
+	//{
+	//	SpriteComponent* pLevelSprite = new SpriteComponent(texture, 10, 10, 1, 1);
+	//	pLevelSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 1, true);
+	//	pLevelSprite->SetDestinationRectPosition(tile.x * 16, (tile.y * 16));
+	//	BoxCollider2D* pBoxCollider = new BoxCollider2D(dynamicObject, pLevelSprite->GetDestinationRect());
+	//	level->AddComponent(pLevelSprite);
+	//	level->AddComponent(pBoxCollider);
+	//}
+	//pScene->Add(level);
 
 
 

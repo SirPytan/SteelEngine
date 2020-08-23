@@ -3,6 +3,7 @@
 #include "BoxCollider2D.h"
 #include "SpriteComponent.h"
 #include "State.h"
+#include "SteelEngineStructs.h"
 
 enum class PlayerNumber : int
 {
@@ -28,6 +29,7 @@ public:
 
 	int GetControllerId() const { return m_ControllerId; }
 	float GetWalkSpeed() const { return m_WalkSpeed; }
+	Input* GetInput() { return &m_Input; }
 
 protected:
 	void Initialize() override;
@@ -41,5 +43,6 @@ private:
 	State* m_pActivState = nullptr;
 	PlayerDirection m_PlayerDirection = PlayerDirection::Right;
 	const float m_WalkSpeed = 10.0f;
+	Input m_Input{};
 };
 

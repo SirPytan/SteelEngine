@@ -13,9 +13,6 @@
     <Filter Include="StateMachine">
       <UniqueIdentifier>{00a5ab49-07cc-46d7-8cf5-62994757d8c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{901c9c15-2bbb-4942-8ae9-28bbbab4262a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerController.h">
@@ -33,12 +30,10 @@
     <ClInclude Include="EnemyData.h">
       <Filter>LevelReader</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="LevelReader.h">
       <Filter>LevelReader</Filter>
     </ClInclude>
+    <ClInclude Include="Commands.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,11 +48,9 @@
     <ClCompile Include="DiggerGame.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="LevelReader.cpp">
       <Filter>LevelReader</Filter>
     </ClCompile>
+    <ClCompile Include="Commands.cpp" />
   </ItemGroup>
 </Project>

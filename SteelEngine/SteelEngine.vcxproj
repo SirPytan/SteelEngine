@@ -249,6 +249,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SteelEngineStructs.h" />
     <ClInclude Include="Structs.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextObject.h" />

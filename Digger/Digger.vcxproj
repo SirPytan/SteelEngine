@@ -166,19 +166,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Commands.cpp" />
     <ClCompile Include="DiggerGame.cpp" />
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="States.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Commands.h" />
     <ClInclude Include="DiggerGame.h" />
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelReader.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="States.h" />
   </ItemGroup>

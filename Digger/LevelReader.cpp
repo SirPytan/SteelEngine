@@ -16,7 +16,7 @@ bool LevelReader::ReadLevels()
 	if (!inputStream)
 	{
 		std::cerr << "Cannot open " << m_LevelFilename << std::endl;
-		return;
+		return false;
 	}
 	else
 	{
@@ -85,5 +85,5 @@ bool LevelReader::ReadLevels()
 		}
 	}
 
-	return false;
+	return true;
 }

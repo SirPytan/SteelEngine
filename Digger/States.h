@@ -15,11 +15,11 @@ private:
 	PlayerController* m_pPlayerController = nullptr;
 };
 
-class WalkLeftState : public State
+class GoLeftState : public State
 {
 public:
-	WalkLeftState(dae::GameObject* pGameObject);
-	~WalkLeftState() = default;
+	GoLeftState(dae::GameObject* pGameObject);
+	~GoLeftState() = default;
 	void Enter() override;
 	State* Update(float deltaTime) override;
 	void Exit() override;
@@ -28,11 +28,11 @@ private:
 	SpriteComponent* m_pSprite = nullptr;
 };
 
-class WalkRightState : public State
+class GoRightState : public State
 {
 public:
-	WalkRightState(dae::GameObject* pGameObject);
-	~WalkRightState() = default;
+	GoRightState(dae::GameObject* pGameObject);
+	~GoRightState() = default;
 	void Enter() override;
 	State* Update(float deltaTime) override;
 	void Exit() override;
@@ -41,11 +41,11 @@ private:
 	SpriteComponent* m_pSprite = nullptr;
 };
 
-class JumpState : public State
+class GoDownState : public State
 {
 public:
-	JumpState(dae::GameObject* pGameObject);
-	~JumpState() = default;
+	GoDownState(dae::GameObject* pGameObject);
+	~GoDownState() = default;
 	void Enter() override;
 	State* Update(float deltaTime) override;
 	void Exit() override;
@@ -54,11 +54,25 @@ private:
 	SpriteComponent* m_pSprite = nullptr;
 };
 
-class ShootBubble : public State
+class GoUpState : public State
 {
 public:
-	ShootBubble(dae::GameObject* pGameObject);
-	~ShootBubble() = default;
+	GoUpState(dae::GameObject* pGameObject);
+	~GoUpState() = default;
+	void Enter() override;
+	State* Update(float deltaTime) override;
+	void Exit() override;
+private:
+	PlayerController* m_pPlayerController = nullptr;
+	SpriteComponent* m_pSprite = nullptr;
+};
+
+
+class ShootFireball : public State
+{
+public:
+	ShootFireball(dae::GameObject* pGameObject);
+	~ShootFireball() = default;
 	void Enter() override;
 	State* Update(float deltaTime) override;
 	void Exit() override;

@@ -7,4 +7,9 @@ enum class Event
 {
 	Nothing
 };
+
+enum class Direction
+{
+	None, Left, Right, Up, Down
+};
 #endif

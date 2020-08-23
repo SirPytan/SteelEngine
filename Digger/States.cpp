@@ -20,23 +20,20 @@ State* StandingState::Update(float deltaTime)
 {
     UNREFERENCED_PARAMETER(deltaTime);
 
+    //Use Commands
+
     if (InputManager::GetInstance().IsPressed(ControllerButton::DpadLeft, m_pPlayerController->GetControllerId()))
     {
-        return new WalkLeftState(m_pGameObject);
+        return new GoLeftState(m_pGameObject);
     }
     if (InputManager::GetInstance().IsPressed(ControllerButton::DpadRight, m_pPlayerController->GetControllerId()))
     {
-        return new WalkRightState(m_pGameObject);
-    }
-
-    if (InputManager::GetInstance().IsPressed(ControllerButton::A, m_pPlayerController->GetControllerId()))
-    {
-        return new JumpState(m_pGameObject);
+        return new GoRightState(m_pGameObject);
     }
 
     if (InputManager::GetInstance().IsPressed(ControllerButton::X, m_pPlayerController->GetControllerId()))
     {
-        return new ShootBubble(m_pGameObject);
+        return new ShootFireball(m_pGameObject);
     }
     return nullptr;
 }
@@ -47,19 +44,19 @@ void StandingState::Exit()
 //-------------------------------------------------------------------
 
 
-WalkLeftState::WalkLeftState(dae::GameObject* pGameObject)
+GoLeftState::GoLeftState(dae::GameObject* pGameObject)
     : State(pGameObject)
 {
     m_pPlayerController = pGameObject->GetComponent<PlayerController>();
     m_pSprite = pGameObject->GetComponent<SpriteComponent>();
 }
 
-void WalkLeftState::Enter()
+void GoLeftState::Enter()
 {
     m_pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 2, false);
 }
 
-State* WalkLeftState::Update(float deltaTime)
+State* GoLeftState::Update(float deltaTime)
 {
     if (InputManager::GetInstance().IsPressed(ControllerButton::DpadLeft, m_pPlayerController->GetControllerId()))
     {
@@ -72,25 +69,25 @@ State* WalkLeftState::Update(float deltaTime)
     return new StandingState(m_pGameObject);
 }
 
-void WalkLeftState::Exit()
+void GoLeftState::Exit()
 {
 }
 
 //-------------------------------------------------------------------
 
-WalkRightState::WalkRightState(dae::GameObject* pGameObject)
+GoRightState::GoRightState(dae::GameObject* pGameObject)
     : State(pGameObject)
 {
     m_pPlayerController = pGameObject->GetComponent<PlayerController>();
     m_pSprite = pGameObject->GetComponent<SpriteComponent>();
 }
 
-void WalkRightState::Enter()
+void GoRightState::Enter()
 {
     m_pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
 }
 
-State* WalkRightState::Update(float deltaTime)
+State* GoRightState::Update(float deltaTime)
 {
     if (InputManager::GetInstance().IsPressed(ControllerButton::DpadRight, m_pPlayerController->GetControllerId()))
     {
@@ -103,52 +100,29 @@ State* WalkRightState::Update(float deltaTime)
     return new StandingState(m_pGameObject);
 }
 
-void WalkRightState::Exit()
+void GoRightState::Exit()
 {
 }
 
 //-------------------------------------------------------------------
 
-JumpState::JumpState(dae::GameObject* pGameObject)
+ShootFireball::ShootFireball(dae::GameObject* pGameObject)
     : State(pGameObject)
 {
     m_pPlayerController = pGameObject->GetComponent<PlayerController>();
     m_pSprite = pGameObject->GetComponent<SpriteComponent>();
 }
 
-void JumpState::Enter()
+void ShootFireball::Enter()
 {
 }
 
-State* JumpState::Update(float deltaTime)
-{
-    UNREFERENCED_PARAMETER(deltaTime);
-    return nullptr;
-}
-
-void JumpState::Exit()
-{
-}
-
-//-------------------------------------------------------------------
-
-ShootBubble::ShootBubble(dae::GameObject* pGameObject)
-    : State(pGameObject)
-{
-    m_pPlayerController = pGameObject->GetComponent<PlayerController>();
-    m_pSprite = pGameObject->GetComponent<SpriteComponent>();
-}
-
-void ShootBubble::Enter()
-{
-}
-
-State* ShootBubble::Update(float deltaTime)
+State* ShootFireball::Update(float deltaTime)
 {
     UNREFERENCED_PARAMETER(deltaTime);
     return nullptr;
 }
 
-void ShootBubble::Exit()
+void ShootFireball::Exit()
 {
 }
