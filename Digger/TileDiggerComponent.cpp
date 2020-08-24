@@ -4,9 +4,26 @@
 #include "TileInfo.h"
 #include "Utils.h"
 
-TileDiggerComponent::TileDiggerComponent(const std::vector<std::weak_ptr<GameObject>>& pTiles)
+TileDiggerComponent::TileDiggerComponent(const std::vector<std::weak_ptr<dae::GameObject>>& pTiles)
 	: m_pTiles{pTiles}
 {
+}
+
+TileDiggerComponent::~TileDiggerComponent()
+{
+	m_Subject->RemoveAllObservers();
+	m_Subject = nullptr;
+	delete m_Subject;
+}
+
+void TileDiggerComponent::AddObserver(Observer* observer)
+{
+	m_Subject->AddObserver(observer);
+}
+
+void TileDiggerComponent::RemoveObserver(Observer* observer)
+{
+	m_Subject->RemoveObserver(observer);
 }
 
 void TileDiggerComponent::Initialize()
@@ -36,7 +53,7 @@ void TileDiggerComponent::Update(float deltaTime)
 					
 					if (tile.type == TileType::Emerald)
 					{
-						//Send Observer message for points
+						m_Subject->Notify(GetGameObject(), Event::GotEmeralds);
 					}
 					pTileInfo->SetTileType(TileType::H_Tunnel);
 				}

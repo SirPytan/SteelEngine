@@ -16,6 +16,9 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{01cf86e5-7396-46fc-9b92-1d49c24fd078}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Observers">
+      <UniqueIdentifier>{422a3358-957a-401f-82d6-4a0aa58c3813}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerController.h">
@@ -45,6 +48,7 @@
     <ClInclude Include="TileInfo.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreDisplay.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,5 +75,6 @@
     <ClCompile Include="TileInfo.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreDisplay.cpp" />
   </ItemGroup>
 </Project>

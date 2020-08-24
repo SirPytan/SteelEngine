@@ -4,9 +4,6 @@
 
 #include "Enums.h"
 #include "GameObject.h"
-//#include "Player.h"
-
-//class Player;
 using namespace dae;
 
 class GameObject;

@@ -5,7 +5,7 @@
 
 enum class Event
 {
-	Nothing
+	Nothing, GotEmeralds
 };
 
 enum class Direction

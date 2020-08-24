@@ -171,6 +171,7 @@
     <ClCompile Include="LevelReader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="ScoreDisplay.cpp" />
     <ClCompile Include="States.cpp" />
     <ClCompile Include="TileDiggerComponent.cpp" />
     <ClCompile Include="TileInfo.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="ScoreDisplay.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="TileDiggerComponent.h" />
     <ClInclude Include="TileInfo.h" />
