@@ -13,6 +13,9 @@
     <Filter Include="StateMachine">
       <UniqueIdentifier>{00a5ab49-07cc-46d7-8cf5-62994757d8c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{01cf86e5-7396-46fc-9b92-1d49c24fd078}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerController.h">
@@ -33,7 +36,15 @@
     <ClInclude Include="LevelReader.h">
       <Filter>LevelReader</Filter>
     </ClInclude>
-    <ClInclude Include="Commands.h" />
+    <ClInclude Include="Commands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="TileDiggerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TileInfo.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +62,14 @@
     <ClCompile Include="LevelReader.cpp">
       <Filter>LevelReader</Filter>
     </ClCompile>
-    <ClCompile Include="Commands.cpp" />
+    <ClCompile Include="Commands.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="TileDiggerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TileInfo.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

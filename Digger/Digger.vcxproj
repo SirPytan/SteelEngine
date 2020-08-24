@@ -172,6 +172,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="States.cpp" />
+    <ClCompile Include="TileDiggerComponent.cpp" />
+    <ClCompile Include="TileInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands.h" />
@@ -181,6 +183,8 @@
     <ClInclude Include="LevelReader.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="States.h" />
+    <ClInclude Include="TileDiggerComponent.h" />
+    <ClInclude Include="TileInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SteelEngine\SteelEngine.vcxproj">

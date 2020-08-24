@@ -15,6 +15,8 @@
 #include "LevelReader.h"
 #include "BoxCollider2D.h"
 #include "PlayerController.h"
+#include "TileInfo.h"
+#include "TileDiggerComponent.h"
 
 DiggerGame::DiggerGame()
 	: SteelEngineGame("Digger - by 2DAE02_Patyk_Daniel - Prog4")
@@ -44,11 +46,15 @@ void DiggerGame::Initialize()
 	int enemySpawnY{};
 	int tileSize = 40;
 
+	std::vector<std::weak_ptr<GameObject>> tiles{};
+
 	auto texture = ResourceManager::GetInstance().LoadTexture("Spritesheet.png");
 	for (Tile tile : levelReader.GetLevel(level - 1)->GetTilePositions())
 	{
 		auto levelTile = std::make_shared<GameObject>();
 		SpriteComponent* pLevelSprite = new SpriteComponent(texture, 8, 8, 1, 1);
+		TileInfo* pTileInfo = new TileInfo(tile, (tile.x * tileSize) + (tileSize * 0.5f), (tile.y * tileSize) - (tileSize * 0.5f));
+		levelTile->AddComponent(pTileInfo);
 		switch (tile.type)
 		{
 		case TileType::Wall:
@@ -81,6 +87,7 @@ void DiggerGame::Initialize()
 		levelTile->AddComponent(pLevelSprite);
 		//BoxCollider2D* pBoxCollider = new BoxCollider2D(&pDynamicObjects, pLevelSprite->GetDestinationRect());
 		//levelTile->AddComponent(pBoxCollider);
+		tiles.push_back(levelTile);
 		pScene->Add(levelTile);
 	}
 
@@ -109,8 +116,8 @@ void DiggerGame::Initialize()
 	//BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(&pDynamicObjects, pSprite->GetDestinationRect(), false);
 	//player->AddComponent(pPlayerBoxCollider);
 	//Todo: Remove Tiles if touched.
-
-
+	TileDiggerComponent* pTileDigger = new TileDiggerComponent(tiles);
+	player->AddComponent(pTileDigger);
 	pScene->Add(player);
 	//--------------------------------------------------------------------------------------------
 
