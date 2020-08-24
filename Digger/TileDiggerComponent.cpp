@@ -33,11 +33,12 @@ void TileDiggerComponent::Update(float deltaTime)
 				{
 					SpriteComponent* pSpriteComponent = pTile.lock()->GetComponent<SpriteComponent>();
 					pSpriteComponent->SetAnimationParameters(AnimationType::OneFrame, 5, 5, true);
-
+					
 					if (tile.type == TileType::Emerald)
 					{
 						//Send Observer message for points
 					}
+					pTileInfo->SetTileType(TileType::H_Tunnel);
 				}
 			}
 		}

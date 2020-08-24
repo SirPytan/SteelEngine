@@ -15,6 +15,7 @@ public:
 	Tile GetTile() { return m_Tile; }
 	float GetCenterX() { return m_CenterX; }
 	float GetCenterY() { return m_CenterY; }
+	void SetTileType(TileType type) { m_Tile.type = type; }
 
 protected:
 	void Initialize() override;
