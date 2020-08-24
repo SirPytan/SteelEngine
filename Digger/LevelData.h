@@ -24,6 +24,7 @@ struct LevelData
 {
 public:
 	LevelData() = default;
+	~LevelData() = default;
 	LevelData(unsigned int levelNumber) : m_LevelNumber{ levelNumber } {}
 	void AddTilePos(const Tile& tile){ m_TilePositions.push_back(tile); }
 	void AddTilePos(int xPos, int yPos, TileType type) { m_TilePositions.push_back(Tile(xPos, yPos, type)); }

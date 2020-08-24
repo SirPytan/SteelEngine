@@ -5,7 +5,7 @@
 class Command
 {
 public:
-	Command() = default;
+	Command();
 	Command(int controllerId) : m_ControllerId{controllerId}{}
 	virtual ~Command() = default;
 	virtual void Execute(/*GameObject& gameObject*/) = 0;

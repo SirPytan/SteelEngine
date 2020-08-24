@@ -3,11 +3,19 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
-
+#include "Helpers.h"
 
 LevelReader::LevelReader(std::string filename)
 	: m_LevelFilename{filename}
 {
+}
+
+LevelReader::~LevelReader()
+{
+	for (LevelData* pLevelData : m_Levels)
+	{
+		SafeDelete(pLevelData);
+	}
 }
 
 bool LevelReader::ReadLevels()
@@ -34,6 +42,15 @@ bool LevelReader::ReadLevels()
 
 				if (line == "")
 					continue;
+
+				if (line == "END")
+				{
+					if (level != nullptr)
+					{
+						m_Levels.push_back(level);
+					}
+					break;
+				}
 				
 				if (std::regex_search(line, matches, regexLevelNo))
 				{
@@ -41,7 +58,7 @@ bool LevelReader::ReadLevels()
 					{
 						if (level != nullptr)
 						{
-							m_Levels.push_back(*level);
+							m_Levels.push_back(level);
 						}
 						level = new LevelData(std::stoi(matches[2].str()));
 						row = 0;

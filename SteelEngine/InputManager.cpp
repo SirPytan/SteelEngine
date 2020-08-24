@@ -1,9 +1,18 @@
 #include "SteelEnginePCH.h"
 #include "InputManager.h"
 #include <SDL.h>
+#include "Helpers.h"
 
 //Source:
 //https://docs.microsoft.com/en-us/windows/win32/xinput/getting-started-with-xinput#multiple-controllers
+
+SteelEngine::InputManager::~InputManager()
+{
+	for (std::pair<ControllerButton, Command*> pair : m_Commands)
+	{
+		SafeDelete(pair.second);
+	}
+}
 
 void SteelEngine::InputManager::Initialize()
 {

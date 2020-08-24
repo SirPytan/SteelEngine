@@ -261,5 +261,6 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Observer</Filter>
     </ClCompile>
+    <ClCompile Include="Command.cpp" />
   </ItemGroup>
 </Project>

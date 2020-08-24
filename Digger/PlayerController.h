@@ -30,12 +30,12 @@ protected:
 	void Update(float deltaTime) override;
 	void Render() override;
 private:
-	BoxCollider2D* m_pBoxCollider = nullptr;
+	//BoxCollider2D* m_pBoxCollider = nullptr;
 	SpriteComponent* m_pSprite = nullptr;
 	int m_ControllerId{};
 	PlayerNumber m_PlayerNumber = PlayerNumber::P1;
 	State* m_pActivState = nullptr;
-	const float m_WalkSpeed = 10.0f;
+	const float m_WalkSpeed = 80.0f;
 	Input m_Input{};
 };
 

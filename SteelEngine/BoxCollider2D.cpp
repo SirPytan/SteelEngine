@@ -38,7 +38,7 @@ void BoxCollider2D::Update(float deltaTime)
 		return;
 	m_IsOverlapping = false;
 
-	for (std::weak_ptr<GameObject> wGameObject : *m_pDynamicGameObjects)
+	for (std::weak_ptr<GameObject> &wGameObject : *m_pDynamicGameObjects)
 	{
 		if (!wGameObject.expired())
 		{
@@ -65,11 +65,12 @@ void BoxCollider2D::Update(float deltaTime)
 						if (Utils::IsOverlapping(dynamicRectf, staticRectf))
 						{
 							m_IsOverlapping = true;
-							auto it = std::find(m_pWeakOverlappingGameObjects.begin(), m_pWeakOverlappingGameObjects.end(), wGameObject);
-							if (it == m_pWeakOverlappingGameObjects.end())
-							{
-								m_pWeakOverlappingGameObjects.push_back(wGameObject);
-							}
+							//auto it = std::find(m_pWeakOverlappingGameObjects.begin(), m_pWeakOverlappingGameObjects.end(), wGameObject);
+							//if (it == m_pWeakOverlappingGameObjects.end())
+							//{
+							//	m_pWeakOverlappingGameObjects.push_back(wGameObject);
+							//}
+
 							////TopCollision
 							//if (dynamicRectf.bottom > (staticRectf.bottom + staticRectf.height))
 							//{

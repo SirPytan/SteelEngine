@@ -67,7 +67,7 @@ GoLeftState::GoLeftState(dae::GameObject* pGameObject)
 
 void GoLeftState::Enter()
 {
-    m_pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 2, false);
+    m_pSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 4, false);
 }
 
 State* GoLeftState::Update(float deltaTime)
@@ -75,9 +75,9 @@ State* GoLeftState::Update(float deltaTime)
     UNREFERENCED_PARAMETER(deltaTime);
     if (m_pPlayerController->GetInput()->direction == Direction::Left)
     {
-        //auto pos = m_pGameObject->GetPosition2D();
-        //pos.x -= deltaTime * m_pPlayerController->GetWalkSpeed();
-        //m_pGameObject->SetPosition(pos.x, pos.y);
+        auto pos = m_pGameObject->GetPosition2D();
+        pos.x -= deltaTime * m_pPlayerController->GetWalkSpeed();
+        m_pGameObject->SetPosition(pos.x, pos.y);
         return nullptr;
     }
 
@@ -99,7 +99,7 @@ GoRightState::GoRightState(dae::GameObject* pGameObject)
 
 void GoRightState::Enter()
 {
-    m_pSprite->SetAnimationParameters(AnimationType::FromLeftToRight, 1, 1, false);
+    m_pSprite->SetAnimationParameters(AnimationType::OneFrame, 2, 4, false);
 }
 
 State* GoRightState::Update(float deltaTime)
@@ -107,9 +107,9 @@ State* GoRightState::Update(float deltaTime)
     UNREFERENCED_PARAMETER(deltaTime);
     if (m_pPlayerController->GetInput()->direction == Direction::Right)
     {
-        //auto pos = m_pGameObject->GetPosition2D();
-        //pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
-        //m_pGameObject->SetPosition(pos.x, pos.y);
+        auto pos = m_pGameObject->GetPosition2D();
+        pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
+        m_pGameObject->SetPosition(pos.x, pos.y);
         return nullptr;
     }
 
@@ -126,20 +126,23 @@ void GoRightState::Exit()
 GoDownState::GoDownState(dae::GameObject* pGameObject)
     : State(pGameObject)
 {
+    m_pPlayerController = pGameObject->GetComponent<PlayerController>();
+    m_pSprite = pGameObject->GetComponent<SpriteComponent>();
 }
 
 void GoDownState::Enter()
 {
+    m_pSprite->SetAnimationParameters(AnimationType::OneFrame, 4, 4, false);
 }
 
 State* GoDownState::Update(float deltaTime)
 {
-    UNREFERENCED_PARAMETER(deltaTime);
+    //UNREFERENCED_PARAMETER(deltaTime);
     if (m_pPlayerController->GetInput()->direction == Direction::Down)
     {
-        //auto pos = m_pGameObject->GetPosition2D();
-        //pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
-        //m_pGameObject->SetPosition(pos.x, pos.y);
+        auto pos = m_pGameObject->GetPosition2D();
+        pos.y += deltaTime * m_pPlayerController->GetWalkSpeed();
+        m_pGameObject->SetPosition(pos.x, pos.y);
         return nullptr;
     }
 
@@ -155,20 +158,23 @@ void GoDownState::Exit()
 GoUpState::GoUpState(dae::GameObject* pGameObject)
     : State(pGameObject)
 {
+    m_pPlayerController = pGameObject->GetComponent<PlayerController>();
+    m_pSprite = pGameObject->GetComponent<SpriteComponent>();
 }
 
 void GoUpState::Enter()
 {
+    m_pSprite->SetAnimationParameters(AnimationType::OneFrame, 3, 4, false);
 }
 
 State* GoUpState::Update(float deltaTime)
 {
-    UNREFERENCED_PARAMETER(deltaTime);
+    //UNREFERENCED_PARAMETER(deltaTime);
     if (m_pPlayerController->GetInput()->direction == Direction::Up)
     {
-        //auto pos = m_pGameObject->GetPosition2D();
-        //pos.x += deltaTime * m_pPlayerController->GetWalkSpeed();
-        //m_pGameObject->SetPosition(pos.x, pos.y);
+        auto pos = m_pGameObject->GetPosition2D();
+        pos.y -= deltaTime * m_pPlayerController->GetWalkSpeed();
+        m_pGameObject->SetPosition(pos.x, pos.y);
         return nullptr;
     }
 
@@ -195,7 +201,8 @@ void ShootFireballState::Enter()
 State* ShootFireballState::Update(float deltaTime)
 {
     UNREFERENCED_PARAMETER(deltaTime);
-    return nullptr;
+    m_pPlayerController->GetInput()->shootFireball = false;
+    return new StandingState(m_pGameObject);
 }
 
 void ShootFireballState::Exit()

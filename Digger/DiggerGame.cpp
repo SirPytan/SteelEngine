@@ -33,10 +33,10 @@ void DiggerGame::Initialize()
 	//InputTestComponent* pInputTest = new InputTestComponent();
 	//go->AddComponent(pInputTest);
 	//pScene->Add(go);
-
+	
 
 	//Level----------------------------------------------------------------------------------
-	std::vector<std::weak_ptr<GameObject>> pDynamicObjects{};
+	//std::vector<std::weak_ptr<GameObject>> pDynamicObjects{};
 	int level = 1;
 	int playerSpawnX{};
 	int playerSpawnY{};
@@ -45,7 +45,7 @@ void DiggerGame::Initialize()
 	int tileSize = 40;
 
 	auto texture = ResourceManager::GetInstance().LoadTexture("Spritesheet.png");
-	for (Tile tile : levelReader.GetLevel(level-1).GetTilePositions())
+	for (Tile tile : levelReader.GetLevel(level - 1)->GetTilePositions())
 	{
 		auto levelTile = std::make_shared<GameObject>();
 		SpriteComponent* pLevelSprite = new SpriteComponent(texture, 8, 8, 1, 1);
@@ -78,9 +78,9 @@ void DiggerGame::Initialize()
 			break;
 		}
 		pLevelSprite->SetDestinationRectPosition(tile.x * tileSize, tile.y * tileSize);
-		BoxCollider2D* pBoxCollider = new BoxCollider2D(&pDynamicObjects, pLevelSprite->GetDestinationRect());
 		levelTile->AddComponent(pLevelSprite);
-		levelTile->AddComponent(pBoxCollider);
+		//BoxCollider2D* pBoxCollider = new BoxCollider2D(&pDynamicObjects, pLevelSprite->GetDestinationRect());
+		//levelTile->AddComponent(pBoxCollider);
 		pScene->Add(levelTile);
 	}
 
@@ -104,10 +104,10 @@ void DiggerGame::Initialize()
 	player->AddComponent(pSprite);
 
 	//Todo: Make collision rect smaller
-	BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(&pDynamicObjects, pSprite->GetDestinationRect(), false);
-	player->AddComponent(pPlayerBoxCollider);
-	//Todo: Add Player Controller
-	//Todo: Add Correct State behavior
+	PlayerController* pPlayerController = new PlayerController(PlayerNumber::P1);
+	player->AddComponent(pPlayerController);
+	//BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(&pDynamicObjects, pSprite->GetDestinationRect(), false);
+	//player->AddComponent(pPlayerBoxCollider);
 	//Todo: Remove Tiles if touched.
 
 
@@ -120,6 +120,7 @@ void DiggerGame::Initialize()
 	//to->SetPosition(80, 20);
 	//pScene->Add(to);
 
+	
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 15);
 	auto fpsObject = std::make_shared<GameObject>();
 	FPSComponent* pFPSComponent = new FPSComponent();
@@ -130,6 +131,7 @@ void DiggerGame::Initialize()
 	fpsObject->AddComponent(pTextRender);
 	fpsObject->AddComponent(pFPSScript);
 	fpsObject->SetPosition(10, 10);
-	pScene->Add(go);
+	pScene->Add(fpsObject);
 	SceneManager::GetInstance().SetActivScene(pScene);
+	
 }

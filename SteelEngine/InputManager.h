@@ -46,6 +46,7 @@ namespace SteelEngine
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
+		~InputManager() override;
 		void Initialize();
 		bool ProcessInput();
 		bool IsPressed(ControllerButton button, int controllerId) const;

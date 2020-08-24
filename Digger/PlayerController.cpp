@@ -14,11 +14,12 @@ PlayerController::~PlayerController()
 {
 	delete m_pActivState;
 	m_pActivState = nullptr;
+	m_pSprite = nullptr;
 }
 
 void PlayerController::Initialize()
 {
-	m_pBoxCollider = m_pGameObject->GetComponent<BoxCollider2D>();
+	//m_pBoxCollider = m_pGameObject->GetComponent<BoxCollider2D>();
 	m_pSprite = m_pGameObject->GetComponent<SpriteComponent>();
 
 	if (m_PlayerNumber == PlayerNumber::P1)
@@ -77,6 +78,7 @@ void PlayerController::Update(float deltaTime)
 			m_pActivState->Enter();
 		}
 	}
+	m_Input.direction = Direction::None;
 }
 
 void PlayerController::Render()
