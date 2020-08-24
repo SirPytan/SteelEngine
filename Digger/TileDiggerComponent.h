@@ -25,7 +25,7 @@ private:
 	SpriteComponent* m_pSprite = nullptr;
 	std::vector<std::weak_ptr<dae::GameObject>> m_pTiles{};
 	float m_MinDistance = 15.f;
-	Subject* m_Subject = nullptr;
+	Subject* m_pSubject = nullptr;
 
 };
 

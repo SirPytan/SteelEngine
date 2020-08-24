@@ -1,7 +1,10 @@
-#include "ScoreDisplay.h"
+#include "SteelEnginePCH.h"
+#include "ScoreObserver.h"
 
 void ScoreObserver::Notify(dae::GameObject* gameObject, Event event)
 {
+	UNREFERENCED_PARAMETER(gameObject);
+
 	if (event == Event::GotEmeralds)
 	{
 		m_Counter++;

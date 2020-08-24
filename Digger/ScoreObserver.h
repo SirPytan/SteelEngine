@@ -3,6 +3,7 @@
 #include "GameObject.h"
 class ScoreObserver : public Observer
 {
+public:
 	void Notify(dae::GameObject* gameObject, Event event) override;
 	int GetScore() { return m_Score; }
 

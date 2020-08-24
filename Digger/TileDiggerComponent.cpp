@@ -3,27 +3,28 @@
 #include "SpriteComponent.h"
 #include "TileInfo.h"
 #include "Utils.h"
+#include "Helpers.h"
 
 TileDiggerComponent::TileDiggerComponent(const std::vector<std::weak_ptr<dae::GameObject>>& pTiles)
 	: m_pTiles{pTiles}
 {
+	m_pSubject = new Subject();
 }
 
 TileDiggerComponent::~TileDiggerComponent()
 {
-	m_Subject->RemoveAllObservers();
-	m_Subject = nullptr;
-	delete m_Subject;
+	m_pSubject->DeleteAllObservers();
+	SafeDelete(m_pSubject);
 }
 
 void TileDiggerComponent::AddObserver(Observer* observer)
 {
-	m_Subject->AddObserver(observer);
+	m_pSubject->AddObserver(observer);
 }
 
 void TileDiggerComponent::RemoveObserver(Observer* observer)
 {
-	m_Subject->RemoveObserver(observer);
+	m_pSubject->RemoveObserver(observer);
 }
 
 void TileDiggerComponent::Initialize()
@@ -53,7 +54,7 @@ void TileDiggerComponent::Update(float deltaTime)
 					
 					if (tile.type == TileType::Emerald)
 					{
-						m_Subject->Notify(GetGameObject(), Event::GotEmeralds);
+						m_pSubject->Notify(GetGameObject(), Event::GotEmeralds);
 					}
 					pTileInfo->SetTileType(TileType::H_Tunnel);
 				}

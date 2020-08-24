@@ -17,6 +17,7 @@ public:
 	void AddObserver(Observer* observer);
 	void RemoveObserver(Observer* observer);
 	void RemoveAllObservers();
+	void DeleteAllObservers();
 	void Notify(dae::GameObject* caller, Event event);
 
 private:

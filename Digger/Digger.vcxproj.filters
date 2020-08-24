@@ -48,7 +48,10 @@
     <ClInclude Include="TileInfo.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreDisplay.h" />
+    <ClInclude Include="ScoreObserver.h">
+      <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreScriptComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="TileInfo.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreDisplay.cpp" />
+    <ClCompile Include="ScoreObserver.cpp">
+      <Filter>Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreScriptComponent.cpp" />
   </ItemGroup>
 </Project>

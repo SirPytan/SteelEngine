@@ -17,6 +17,8 @@
 #include "PlayerController.h"
 #include "TileInfo.h"
 #include "TileDiggerComponent.h"
+#include "ScoreObserver.h"
+#include "ScoreScriptComponent.h"
 
 DiggerGame::DiggerGame()
 	: SteelEngineGame("Digger - by 2DAE02_Patyk_Daniel - Prog4")
@@ -46,12 +48,12 @@ void DiggerGame::Initialize()
 	int enemySpawnY{};
 	int tileSize = 40;
 
-	std::vector<std::weak_ptr<GameObject>> tiles{};
+	std::vector<std::weak_ptr<dae::GameObject>> tiles{};
 
 	auto texture = ResourceManager::GetInstance().LoadTexture("Spritesheet.png");
 	for (Tile tile : levelReader.GetLevel(level - 1)->GetTilePositions())
 	{
-		auto levelTile = std::make_shared<GameObject>();
+		auto levelTile = std::make_shared<dae::GameObject>();
 		SpriteComponent* pLevelSprite = new SpriteComponent(texture, 8, 8, 1, 1);
 		TileInfo* pTileInfo = new TileInfo(tile, (tile.x * tileSize) + (tileSize * 0.5f), (tile.y * tileSize) - (tileSize * 0.5f));
 		levelTile->AddComponent(pTileInfo);
@@ -92,7 +94,7 @@ void DiggerGame::Initialize()
 	}
 
 	//Bottom Border------------------------------------------------------------------------------
-	auto bottomborder = std::make_shared<GameObject>();
+	auto bottomborder = std::make_shared<dae::GameObject>();
 	for (int i{}; i < 15; i++)
 	{
 		SpriteComponent* pBorderSprite = new SpriteComponent(texture, 8, 8, 1, 1);
@@ -103,33 +105,38 @@ void DiggerGame::Initialize()
 	pScene->Add(bottomborder);
 
 	//Player--------------------------------------------------------------------------------------
-	auto player = std::make_shared<GameObject>();
+	auto player = std::make_shared<dae::GameObject>();
 	player->SetPosition((float)playerSpawnX,(float)playerSpawnY);
 	SpriteComponent* pSprite = new SpriteComponent("Spritesheet.png", 8, 8, 1, 1);
 	pSprite->SetAnimationParameters(AnimationType::OneFrame, 1, 4, false);
 	pSprite->SetDestinationRectPosition((int)player->GetPosition().x, (int)player->GetPosition().y);
 	player->AddComponent(pSprite);
 
-	//Todo: Make collision rect smaller
-	PlayerController* pPlayerController = new PlayerController(PlayerNumber::P1);
+		PlayerController* pPlayerController = new PlayerController(PlayerNumber::P1);
 	player->AddComponent(pPlayerController);
-	//BoxCollider2D* pPlayerBoxCollider = new BoxCollider2D(&pDynamicObjects, pSprite->GetDestinationRect(), false);
-	//player->AddComponent(pPlayerBoxCollider);
-	//Todo: Remove Tiles if touched.
+
+	ScoreObserver* pScoreObserver = new ScoreObserver();
+
 	TileDiggerComponent* pTileDigger = new TileDiggerComponent(tiles);
+	pTileDigger->AddObserver(pScoreObserver);
 	player->AddComponent(pTileDigger);
 	pScene->Add(player);
 	//--------------------------------------------------------------------------------------------
+	//Score
+	auto scoreFont = ResourceManager::GetInstance().LoadFont("Pixellari.otf", 15);
+	auto scoreObject = std::make_shared<dae::GameObject>();
+	TextRenderComponent* pScoreTextRender = new TextRenderComponent(scoreFont);
+	ScoreScriptComponent* pScoreScriptComponent = new ScoreScriptComponent(pScoreObserver);
+	pScoreTextRender->SetColor({ 0,255,0 });
+	scoreObject->AddComponent(pScoreTextRender);
+	scoreObject->AddComponent(pScoreScriptComponent);
+	scoreObject->SetPosition(10, 460);
+	pScene->Add(scoreObject);
 
-
-	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	//auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-	//to->SetPosition(80, 20);
-	//pScene->Add(to);
 
 	
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 15);
-	auto fpsObject = std::make_shared<GameObject>();
+	auto fpsObject = std::make_shared<dae::GameObject>();
 	FPSComponent* pFPSComponent = new FPSComponent();
 	TextRenderComponent* pTextRender = new TextRenderComponent(font);
 	FPSScript* pFPSScript = new FPSScript();
@@ -139,6 +146,8 @@ void DiggerGame::Initialize()
 	fpsObject->AddComponent(pFPSScript);
 	fpsObject->SetPosition(10, 10);
 	pScene->Add(fpsObject);
+
+
 	SceneManager::GetInstance().SetActivScene(pScene);
 	
 }
